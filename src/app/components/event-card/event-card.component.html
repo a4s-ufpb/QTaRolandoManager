@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card" (click)="goToDetails()">
+    <div class="card-header">
+      <img [src]="this.getBanner()" class="card-img">
+    </div>
+    <div class="card-body">
+      <div class="title">
+        <h2 class="card-title">{{this.event.title}} {{this.event.subtitle}}</h2>
+      </div>
+      <div class="details">
+        <div class="category-location">
+          <p class="card-category">{{this.getCategoryName()}}</p>
+          <div class="card-local">
+            <i class="eva eva-pin-outline"></i>
+            <p>{{this.event.location}}</p>
+          </div>
+        </div>
+        <div class="start-end-date">
+          <div class="start-date">
+            <p>Início</p>
+            <p class="date">{{this.getStartEndDate().startDate}}</p>
+          </div>
+          <div class="end-date">
+            <p>Fim</p>
+            <p class="date">{{this.getStartEndDate().endDate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

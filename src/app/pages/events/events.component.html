@@ -1,0 +1,85 @@
+<body>
+  <div class="wrapper">
+    <h1 class="title">Eventos</h1>
+    <div class="search-wrap">
+      <div class="search-content">
+        <div class="btn btn-common">
+          <i class="eva eva-search-outline"></i>
+        </div>
+        <input type="text" class="input" placeholder="Pesquisar eventos, cursos, palestras...">
+      </div>
+
+      <div class="filters">
+        <p>Filtrar por:</p>
+
+        <div class="selecters">
+          <div class="select-menu" #categories_option>
+            <div class="select-btn" #categories_toggle id="category_btn" (click)="openCategoriesFilter()"
+              [ngClass]="this.categorySelected != 0 ? 'active' : ''">
+              <span class="sBtn-text" #category_seleted>Categorias</span>
+              <i class="eva eva-arrow-ios-downward-outline" id="category_arrow" *ngIf="this.categorySelected == 0"></i>
+              <i class="eva eva-close-circle" id="category_reset" *ngIf="this.categorySelected != 0"
+                (click)="selectCategory('')"></i>
+            </div>
+
+            <ul class="options" #categories_menu>
+              <li class="option" (click)="selectCategory(category)" *ngFor="let category of getCategoriesValues()">
+                <span class="option-text">{{category}}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="select-menu" #date_option>
+            <div class="select-btn" #date_toggle id="date_btn" (click)="openDatesFilter()"
+              [ngClass]="this.dateSelected != 0 ? 'active' : ''">
+              <span class="sBtn-text" #date_seleted>Data</span>
+              <i class="eva eva-arrow-ios-downward-outline" id="date_arrow" *ngIf="this.dateSelected == 0"></i>
+              <i class="eva eva-close-circle" id="date_reset" *ngIf="this.dateSelected != 0"
+                (click)="selectDate('')"></i>
+            </div>
+
+            <ul class="options" #date_menu>
+              <li class="option" (click)="selectDate(date)" *ngFor="let date of getDatesValues()">
+                <span class="option-text">{{date}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="line"></span>
+
+    <div class="events-content">
+      <div class="event" *ngFor="let event of events | paginate: {itemsPerPage: 24, currentPage: this.currentPage}">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
+    </div>
+
+    <pagination-template #p="paginationApi" (pageChange)="this.currentPage= $event" *ngIf="events">
+      <div class="pagination-custom">
+        <ul class="pagi">
+          <li class="item">
+            <a *ngIf="!p.isFirstPage()" [class.disabled]="p.isFirstPage()" (click)="p.previous()"
+              class="page-link arrow" aria-label="Anterior">
+              <i class="eva eva-arrow-ios-back-outline"></i>
+            </a>
+          </li>
+          <li *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value" class="page-item">
+            <a (click)="p.setCurrent(page.value)" class="page-link"> {{ page.label }}
+            </a>
+          </li>
+          <li class="item">
+            <a *ngIf="!p.isLastPage()" [class.disabled]="p.isLastPage()" (click)="p.next()" class="page-link arrow"
+              aria-label="Próxima">
+              <i class="eva eva-arrow-ios-forward-outline"></i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </pagination-template>
+
+  </div>
+  <app-footer></app-footer>
+</body>

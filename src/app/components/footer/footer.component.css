@@ -1,0 +1,113 @@
+footer {
+  background: var(--primary-color);
+  display: flex;
+  justify-content: space-around;
+  padding: 24px 0;
+}
+
+.logo {
+  width: 200px;
+}
+
+.credits {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.credits h4 {
+  opacity: 0.4;
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-project {
+  margin-top: 4px;
+  margin-left: -6px;
+  width: 125px;
+}
+
+.line {
+  height: 100%;
+  border-radius: 6px;
+  border: 1.5px solid var(--text-color);
+  background: var(--text-color);
+  opacity: 0.25;
+  display: block;
+}
+
+.social-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 24px;
+}
+
+.bx {
+  opacity: 0.4;
+  font-size: 28px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--tran-02);
+}
+
+.bx.bxl-instagram:hover {
+  opacity: 1;
+  color: #F1CF6F;
+}
+
+.bx.bxl-github:hover {
+  opacity: 1;
+}
+
+.bx.bx-envelope:hover {
+  opacity: 1;
+  color: white;
+}
+
+@media only screen and (max-width: 700px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .credits {
+    flex-direction: column;
+  }
+
+  .info-content {
+    margin-top: 12px;
+  }
+
+  .line {
+    width: 100%;
+    border-radius: 6px;
+    border: 1.5px solid var(--text-color);
+    background: var(--text-color);
+    opacity: 0.25;
+    display: block;
+  }
+
+  .social-content {
+    margin-top: 12px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .logo {
+    width: 150px;
+  }
+
+  .credits h4 {
+    font-size: 12px;
+  }
+
+  .logo-project {
+    width: 100px;
+  }
+}

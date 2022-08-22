@@ -1,0 +1,57 @@
+<!-- <body> -->
+<nav class="sidebar close">
+  <header>
+    <div class="image-text">
+      <span class="image">
+        <img src="../../../assets/images/favicon.png" alt="logo">
+      </span>
+      <div class="text header-text">
+        <span class="name">Anderson</span>
+        <span class="job">Administrador</span>
+      </div>
+    </div>
+
+    <i class="eva eva-chevron-right-outline toggle" (click)="toggleMenu()"></i>
+  </header>
+
+  <span class="line"></span>
+
+  <div class="menu-bar">
+    <div class="menu">
+      <ul class="menu-links">
+        <li class="nav-link">
+          <a routerLink="/dashboard/eventos" [ngClass]="this.page == 2 ? 'active' : ''">
+            <i class="eva eva-calendar-outline icon"></i>
+            <span class="text nav-text">Eventos</span>
+          </a>
+          <span class="tooltip">Eventos</span>
+        </li>
+        <li class="nav-link">
+          <a routerLink="/dashboard/usuarios" [ngClass]="this.page == 3 ? 'active' : ''">
+            <i class="eva eva-people-outline icon"></i>
+            <span class="text nav-text">Usuários</span>
+          </a>
+          <span class="tooltip">Usuários</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bottom-content">
+      <li class="">
+        <a href="#">
+          <i class="eva eva-log-out-outline icon"></i>
+          <span class="text nav-text">Sair</span>
+        </a>
+      </li>
+    </div>
+
+  </div>
+</nav>
+
+<!-- <section class="content">
+    <router-outlet></router-outlet>
+  </section> -->
+
+<!-- </body> -->
+<!-- <app-events *ngIf="this.indexPage == -1"></app-events>
+<app-login *ngIf="this.indexPage == -2"></app-login> -->
