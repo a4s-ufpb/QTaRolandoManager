@@ -78,7 +78,7 @@ nav ul .button-register:hover {
   display: flex;
   position: relative;
   background-color: var(--primary-color-light);
-  padding: 0.75rem;
+  padding: 8px;
   border-radius: 8px;
 }
 
@@ -87,10 +87,10 @@ input[type=radio] {
 }
 
 .tab {
-  z-index: 2;
+  z-index: 1;
   display: flex;
   gap: 10px;
-  height: 45px;
+  height: 42px;
   width: 116px;
   justify-content: center;
   align-items: center;
@@ -104,7 +104,7 @@ input[type=radio] {
   font-size: 22px;
 }
 
-input[type=radio]:checked+label,
+input[type=radio]:checked+label p,
 input[type=radio]:checked+label i {
   color: var(--sidebar-color);
 }
@@ -112,9 +112,9 @@ input[type=radio]:checked+label i {
 .glider {
   position: absolute;
   display: flex;
-  height: 45px;
+  height: 42px;
   width: 116px;
-  z-index: 1;
+  z-index: 0;
   border-radius: 6px;
   background-color: var(--primary-color);
   transition: var(--tran-02);
@@ -177,7 +177,7 @@ input[id=users-tab]:checked~.glider {
 }
 
 .action .btn .toggle h3 {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   margin: 10px 10px;
   max-width: 120px;
@@ -308,6 +308,56 @@ input[id=users-tab]:checked~.glider {
   transition: var(--tran-02);
 }
 
+@media only screen and (max-width: 950px) {
+
+  nav .logo .logo-name {
+    width: 20vh;
+  }
+
+  nav .logo .logo-icon {
+    width: 5vh;
+  }
+
+  .tabs {
+    padding: 6px;
+  }
+
+  .tab i {
+    font-size: 20px;
+  }
+
+  .tab p {
+    display: none;
+  }
+
+  .tab {
+    height: 42px;
+    width: 42px;
+  }
+
+  .glider {
+    height: 42px;
+    width: 42px;
+  }
+
+  .action .btn .toggle {
+    margin-right: 0;
+  }
+
+  .action .btn .toggle .toggle-person-img {
+    display: flex;
+  }
+
+  .action .btn .profile,
+  .action .btn .toggle h3 {
+    display: none;
+  }
+
+  .action .btn .toggle {
+    border-radius: 25px 10px 10px 25px;
+  }
+}
+
 @media only screen and (max-width: 570px) {
   nav {
     padding: 8px 0;
@@ -329,12 +379,32 @@ input[id=users-tab]:checked~.glider {
     padding: 12px 20px;
   }
 
+  .tabs {
+    padding: 4px;
+  }
+
+  .tab i {
+    font-size: 18px;
+  }
+
+  .tab {
+    height: 35px;
+    width: 35px;
+  }
+
+  .glider {
+    height: 35px;
+    width: 35px;
+  }
+
   .action .btn .toggle {
     margin-right: 0;
   }
 
   .action .btn .toggle .toggle-person-img {
     display: flex;
+    width: 38px;
+    height: 38px;
   }
 
   .action .btn .profile,

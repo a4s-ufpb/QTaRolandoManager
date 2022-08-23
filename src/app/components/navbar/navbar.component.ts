@@ -9,6 +9,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 })
 export class NavbarComponent implements OnInit {
 
+  routerPath: string = "";
   isLoginPage: boolean = false;
 
   menuActive: boolean = false;
@@ -25,12 +26,17 @@ export class NavbarComponent implements OnInit {
 
   getCurrentPage(): void {
     this.router.events.subscribe((_) => {
+      this.routerPath = this.location.path();
       if (this.location.path() == '/login') {
         this.isLoginPage = true;
       } else {
         this.isLoginPage = false;
       }
     });
+  }
+
+  checkPathIsEqual(path: string): boolean {
+    return this.routerPath == path;
   }
 
   menuToggle(): void {
