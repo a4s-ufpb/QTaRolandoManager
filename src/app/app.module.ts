@@ -1,3 +1,5 @@
+import { httpInterceptorProviders } from './helpers/http.interceptor';
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -5,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from "@angular/forms";
 import { NgxPaginationModule } from "ngx-pagination";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
 import { PasswordStrengthComponent } from './components/password-strength/password-strength.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardEventsComponent } from './pages/dashboard-events/dashboard-events.component';
@@ -25,12 +27,12 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
 import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { EventCardDetailsComponent } from './components/event-card-details/event-card-details.component';
+import { SigninSignupComponent } from './pages/signin-signup/signin-signup.component';
 registerLocaleData(localePT)
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     PasswordStrengthComponent,
     SidebarComponent,
     DashboardEventsComponent,
@@ -42,7 +44,8 @@ registerLocaleData(localePT)
     EventCardComponent,
     FooterComponent,
     EventDetailsComponent,
-    EventCardDetailsComponent
+    EventCardDetailsComponent,
+    SigninSignupComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +53,10 @@ registerLocaleData(localePT)
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

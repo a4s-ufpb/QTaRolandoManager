@@ -13,10 +13,13 @@
   --sidebar-color: #FFF;
   --primary-color: #FC2E3C;
   --secondary-color: #ED834E;
+  --third-color: #8371fd;
+  --confirm-color: green;
   --primary-color-light: #eaedf5;
   --placeholder-color: #BFBFBF;
   --toggle-color: #DDD;
   --text-color: #111111;
+  --text-btn-color: #FFF;
   --text-color-secondary: #878787;
   --card-color-primary: #FFF;
   --card-color-primary-light: #F3F3F3;
@@ -27,11 +30,12 @@
   --tran-03: all 0.3s ease;
   --tran-04: all 0.4s ease;
   --tran-05: all 0.5s ease;
+  --tran-08-out: 0.8s ease-in-out;
 
   --toast-tran-05: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 
   /*====== Shadow ======*/
-  --shadow-card: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0px 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-card-hover: 0px 2px 10px rgba(0, 0, 0, 0.25);
   --shadow-pagination: 0px 2px 1px rgba(0, 0, 0, 0.1);
   --shadow-banner: 0px 2px 5px rgba(0, 0, 0, 0.1);

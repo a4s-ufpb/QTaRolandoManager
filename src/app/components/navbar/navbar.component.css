@@ -6,7 +6,7 @@
 
 nav {
   background: var(--sidebar-color);
-  padding: 6px 0;
+  padding: 12px 0;
   width: 100%;
   display: flex;
   z-index: 1;
@@ -15,6 +15,7 @@ nav {
 }
 
 nav .logo {
+  margin-left: 12px;
   cursor: pointer;
   display: flex;
   width: fit-content;
@@ -27,7 +28,7 @@ nav .logo .logo-icon {
 
 nav .logo .logo-name {
   margin-top: 8px;
-  width: 25vh;
+  width: 22vh;
   position: relative;
 }
 
@@ -55,15 +56,13 @@ nav ul .button-login:hover {
 }
 
 nav ul .button-register {
-  background: var(--primary-color);
+  background: var(--text-color);
   color: var(--sidebar-color);
   font-weight: bold;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
 }
 
 nav ul .button-register:hover {
-  box-shadow: none;
-  filter: brightness(95%);
+  background: var(--third-color);
 }
 
 /* Tabs dashboard */

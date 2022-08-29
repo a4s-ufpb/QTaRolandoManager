@@ -1,19 +1,22 @@
 <nav *ngIf="!this.isLoginPage">
   <div [routerLink]="['/']" class="logo">
-    <img src="../../../assets/images/logo-navbar.svg" class="logo-icon">
+    <img src="../../../assets/images/icon.svg" class="logo-icon">
     <img src="../../../assets/images/name-orange.svg" class="logo-name">
   </div>
-  <div *ngIf="isLogged()" class="container">
+  <div *ngIf="isLogged && checkPathIsEqual('/dashboard/eventos') || checkPathIsEqual('/dashboard/usuarios')"
+    class="container">
     <div class="tabs">
 
-      <input type="radio" name="tabs" id="events-tab" [checked]="this.checkPathIsEqual('/dashboard/eventos')">
-      <label [routerLink]="['/dashboard/eventos']" for="events-tab" class="tab noselect">
+      <input *ngIf="this.showEventsPanel" type="radio" name="tabs" id="events-tab"
+        [checked]="this.checkPathIsEqual('/dashboard/eventos')">
+      <label *ngIf="this.showEventsPanel" [routerLink]="['/dashboard/eventos']" for="events-tab" class="tab noselect">
         <i class="eva eva-calendar-outline"></i>
         <p>Eventos</p>
       </label>
 
-      <input type="radio" name="tabs" id="users-tab" [checked]="this.checkPathIsEqual('/dashboard/usuarios')">
-      <label [routerLink]="['/dashboard/usuarios']" for="users-tab" class="tab noselect">
+      <input *ngIf="this.showUsersPanel" type="radio" name="tabs" id="users-tab"
+        [checked]="this.checkPathIsEqual('/dashboard/usuarios')">
+      <label *ngIf="this.showUsersPanel" [routerLink]="['/dashboard/usuarios']" for="users-tab" class="tab noselect">
         <i class="eva eva-people-outline"></i>
         <p>Usuários</p>
       </label>
@@ -22,20 +25,20 @@
     </div>
   </div>
 
-  <ul *ngIf="!isLogged()">
-    <li><a class="button-login" [routerLink]="['/login']" [state]="{isLogin: true}">Entrar</a></li>
-    <li><a class="button-register" [routerLink]="['/login']" [state]="{isLogin: false}">Cadastrar-se</a></li>
+  <ul *ngIf="!isLoggedIn">
+    <li><a class="button-login" [routerLink]="['/login']" [queryParams]="{type: 'signIn'}">Entrar</a></li>
+    <li><a class="button-register" [routerLink]="['/login']" [queryParams]="{type: 'singUp'}">Cadastrar-se</a></li>
   </ul>
 
 
-  <div *ngIf="isLogged()" class="user-profile">
+  <div *ngIf="isLoggedIn" class="user-profile">
     <div class="action">
       <div class="btn">
         <div class="profile">
           <img src="../../../assets/images/user-temp.jpg">
         </div>
         <div class="toggle" (click)="this.menuToggle()" #toggleButton>
-          <h3>Anderson Barbosa</h3>
+          <h3>{{currentUser.username}}</h3>
           <div class="toggle-person-img">
             <img src="../../../assets/images/user-temp.jpg">
           </div>
@@ -48,8 +51,8 @@
             <img src="../../../assets/images/user-temp.jpg">
           </div>
           <div class="name-email">
-            <h3>Anderson Barbosa de Freitas</h3>
-            <span>anderson@gmail.com</span>
+            <h3>{{currentUser.username}}</h3>
+            <span>{{currentUser.email}}</span>
           </div>
         </div>
         <!-- <h2>Minha conta</h2> -->
@@ -64,7 +67,7 @@
             <p>Dashboard</p>
           </li>
           <hr>
-          <li id="logout-button">
+          <li id="logout-button" (click)="this.logout()">
             <i class="eva eva-log-out-outline"></i>
             <p>Sair</p>
           </li>
