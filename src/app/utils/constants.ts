@@ -1,10 +1,3 @@
-enum PagesEnum {
-  Events = 0,
-  Login = 1,
-  DashboardEvents = 2,
-  DashboardUsers = 3,
-}
-
 enum CategoriesEnum {
   Todos = '',
   Festas_Shows = 'Festas e Shows',
@@ -25,7 +18,6 @@ enum DatesEnum {
 }
 
 export {
-  PagesEnum,
   CategoriesEnum,
   DatesEnum,
 }
