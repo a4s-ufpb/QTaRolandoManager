@@ -272,7 +272,7 @@ main.sign-up-mode .carousel {
 
 .image {
   padding: 20% 7% 0 7%;
-  width: 90%;
+  width: 100%;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   opacity: 0;

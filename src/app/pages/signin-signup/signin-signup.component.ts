@@ -63,7 +63,11 @@ export class SigninSignupComponent implements OnInit {
     const inputs = document.querySelectorAll(".input-field") as NodeListOf<HTMLInputElement>;
 
     inputs.forEach(inp => {
+      inp.oninput = function () {
+        if (inp.value != "") inp.classList.add("active");
+      };
       inp.addEventListener("focus", () => {
+        if (inp.classList.contains("active")) return;
         inp.classList.add("active");
       });
       inp.addEventListener("blur", () => {
@@ -141,13 +145,18 @@ export class SigninSignupComponent implements OnInit {
       },
       error: (err) => {
         this.errorMessage = err.error.message;
+      },
+      complete: () => {
+        this.login(user.email, user.password);
       }
     });
-    // this.router.navigate(['/dashboard/eventos']);
   }
 
-  login() {
-    this.authService.login(this.signInForm.controls.email.value!, this.signInForm.controls.password.value!).subscribe({
+  login(email?: string, password?: string) {
+    this.authService.login(
+      email ?? this.signInForm.controls.email.value!,
+      password ?? this.signInForm.controls.password.value!
+    ).subscribe({
       next: (data) => {
         console.log(data);
         this.storageService.saveUser(data);
@@ -155,10 +164,16 @@ export class SigninSignupComponent implements OnInit {
         this.errorMessage = "";
         this.isLogged = true;
         this.roles = this.storageService.getUser().roles;
-        // this.router.navigate(['/dashboard/eventos']);
+        this.router.navigate(['/eventos']).then(() => {
+          window.location.reload();
+        });
       },
       error: (err) => {
         this.errorMessage = err.error.message;
+      },
+      complete: () => {
+        this.signInForm.reset();
+        this.signUpForm.reset();
       }
     });
   }
