@@ -8,9 +8,13 @@
 }
 
 :root {
+  --sidebar-width: 219px;
+  --header-height: 3.5rem;
+
   /*====== Colors ======*/
-  --body-color: #F6F6F6;
+  --body-color: #F9F6FD;
   --sidebar-color: #FFF;
+  --container-color: #FFFFFF;
   --primary-color: #FC2E3C;
   --secondary-color: #ED834E;
   --third-color: #8371fd;
@@ -18,11 +22,51 @@
   --primary-color-light: #eaedf5;
   --placeholder-color: #BFBFBF;
   --toggle-color: #DDD;
-  --text-color: #111111;
+
+  --text-color: #19181B;
+  --text-color-light: #A5A1AA;
   --text-btn-color: #FFF;
   --text-color-secondary: #878787;
+
   --card-color-primary: #FFF;
   --card-color-primary-light: #F3F3F3;
+
+  --box1-color: #4DA3FF;
+  --box2-color: #FFE6AC;
+  --box3-color: #E7D1FC;
+
+  --category-1: #ED8B4E;
+  --category-2: #F54EA2;
+  --category-3: #7117EA;
+  --category-4: #5B247A;
+  --category-5: #C53354;
+  --category-6: #3BB2B8;
+
+  /* Font and typography */
+  --10px: 0.625rem;
+  --12px: 0.75rem;
+  --14px: 0.875rem;
+  --16px: 1rem;
+  --18px: 1.125rem;
+  --20px: 1.125rem;
+  --22px: 1.375rem;
+  --24px: 1.5rem;
+  --28px: 1.75rem;
+  --32px: 2rem;
+  --34px: 2.125rem;
+  --38px: 2.375rem;
+  --40px: 2.5rem;
+  --48px: 3rem;
+  --normal-font-size: 0.85rem;
+  --small-font-size: 0.8rem;
+  --smaller-font-size: 0.8rem;
+
+  /* Font weight */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /* Z index */
+  --z-fixed: 100;
 
   /*====== Transition ======*/
   --tran-01: all 0.1s ease;
@@ -42,8 +86,15 @@
   --shadow-toast: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 0.9rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
 html {
-  font-size: 62.5%;
   scroll-behavior: smooth;
 }
 
