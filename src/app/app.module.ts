@@ -28,6 +28,7 @@ import localePT from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { EventCardDetailsComponent } from './components/event-card-details/event-card-details.component';
 import { SigninSignupComponent } from './pages/signin-signup/signin-signup.component';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 registerLocaleData(localePT)
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localePT)
     FooterComponent,
     EventDetailsComponent,
     EventCardDetailsComponent,
-    SigninSignupComponent
+    SigninSignupComponent,
+    UserAvatarComponent
   ],
   imports: [
     BrowserModule,

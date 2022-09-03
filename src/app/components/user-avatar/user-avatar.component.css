@@ -1,0 +1,17 @@
+.avatar {
+  font-size: 3rem;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: #5f9ea0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar::after {
+  content: attr(data-label);
+  font-size: 1.2rem;
+  color: var(--text-btn-color);
+  font-weight: var(--font-medium);
+}
