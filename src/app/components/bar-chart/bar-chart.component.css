@@ -1,9 +1,7 @@
 .bar-chart-content {
-  width: 45vw;
+  width: 99%;
 }
 
-@media only screen and (max-width: 1100px) {
-  .bar-chart-content {
-    width: 60vw;
-  }
+canvas {
+  max-height: 50vh;
 }

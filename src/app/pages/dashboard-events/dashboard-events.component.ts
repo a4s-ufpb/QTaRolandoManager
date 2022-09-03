@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PagesEnum } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-dashboard-events',
@@ -8,7 +7,10 @@ import { PagesEnum } from 'src/app/utils/constants';
 })
 export class DashboardEventsComponent implements OnInit {
 
-  page: PagesEnum = PagesEnum.DashboardEvents;
+  usernames: string[] = ["Arte, Cinema e Lazer", "Congressos e Palestras", "Cursos e Workshops", "Esportes", "Festas e Shows"];
+  eventsByUser: number[] = [12, 10, 3, 5, 7];
+  barLabel: string = "Eventos por Categoria";
+  pieLabel: string = "Eventos cadastrados(%)";
 
   constructor() { }
 

@@ -1,15 +1,123 @@
-<body>
-  <!-- <app-sidebar [page]="this.page"></app-sidebar> -->
-  <div class="content">
-    <section>
-      <h1>Dashboard</h1>
-      <div class="charts-content">
-        <div class="bar-chart">
+<section>
+  <div class="dash-content">
+    <div class="overview">
+      <div class="title">
+        <span class="material-symbols-rounded title-icon">speed</span>
+        <span class="text">Dashboard</span>
+      </div>
+
+      <!-- Cards -->
+
+      <div class="card-box">
+        <div class="card">
+          <div class="card-info">
+            <div class="value">127</div>
+            <div class="card-name">Eventos criados</div>
+          </div>
+          <div class="icon-bx">
+            <span class="material-symbols-rounded">edit</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-info">
+            <div class="value">10</div>
+            <div class="card-name">Eventos passados</div>
+          </div>
+          <div class="icon-bx">
+            <span class="material-symbols-rounded">history</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-info">
+            <div class="value">Arte e Lazer</div>
+            <div class="card-name">Categoria líder</div>
+          </div>
+          <div class="icon-bx">
+            <span class="material-symbols-rounded">star</span>
+          </div>
         </div>
       </div>
-    </section>
-    <section>
-      <h1>Eventos</h1>
-    </section>
+
+      <!-- Charts -->
+      <div class="graph-box">
+        <div class="box">
+          <app-bar-chart [labels]="this.usernames" [label]="this.barLabel" [data]="this.eventsByUser"></app-bar-chart>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="activity">
+      <div class="title">
+        <span class="material-symbols-rounded title-icon">schedule</span>
+        <span class="text">Atividade Recente</span>
+      </div>
+
+      <div class="recent-activity">
+        <table>
+          <thead>
+            <tr>
+              <td>Nome</td>
+              <td>Descrição</td>
+              <td>Início</td>
+              <td>Fim</td>
+              <td>Categoria(s)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>Título do evento</span></td>
+              <td>
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptas sint. Adipisci nobis totam
+                  optio, aliquid inventore soluta ratione dignissimos?
+                </span>
+              </td>
+              <td>31/8/2022</td>
+              <td>2/9/2022</td>
+              <td>
+                <div class="categories"><span class="category category-1">Arte
+                    e Lazer</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Título do evento</span></td>
+              <td>
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptas sint. Adipisci nobis totam
+                  optio, aliquid inventore soluta ratione dignissimos?
+                </span>
+              </td>
+              <td>31/8/2022</td>
+              <td>2/9/2022</td>
+              <td>
+                <div class="categories"><span class="category category-1">Arte
+                    e Lazer</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Título do evento</span></td>
+              <td>
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptas sint. Adipisci nobis totam
+                  optio, aliquid inventore soluta ratione dignissimos?
+                </span>
+              </td>
+              <td>31/8/2022</td>
+              <td>2/9/2022</td>
+              <td>
+                <div class="categories">
+                  <span class="category category-2">Festas e Shows</span><span class="category category-1">Arte
+                    e Lazer</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
-</body>
+</section>

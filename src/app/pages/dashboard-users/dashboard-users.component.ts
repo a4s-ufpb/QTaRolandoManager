@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PagesEnum } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-dashboard-users',
@@ -11,8 +10,6 @@ export class DashboardUsersComponent implements OnInit {
   eventsByUser: number[] = [12, 10, 3, 5, 7];
   barLabel: string = "Eventos por usuário";
   pieLabel: string = "Eventos cadastrados(%)";
-
-  page: PagesEnum = PagesEnum.DashboardUsers;
 
   constructor() { }
 

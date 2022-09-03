@@ -56,7 +56,7 @@ export class BarChartComponent implements OnInit {
               size: 16,
               family: 'Montserrat',
             },
-            color: '#404244',
+            color: 'var(--text-color)',
           },
         }
       }
