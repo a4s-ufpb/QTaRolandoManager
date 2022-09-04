@@ -36,6 +36,7 @@
   padding: 12px;
   height: 55%;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   gap: 12px;
 }
@@ -46,6 +47,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: var(--20px);
 }
 
 .details {
@@ -71,7 +73,7 @@
   border-radius: 8px;
   padding: 6px 10px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: var(--10px);
   background-color: var(--card-color-primary-light);
 }
 
@@ -91,6 +93,7 @@
 
 .card-body .start-end-date {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 6px;
   justify-content: space-between;
   font-size: 12px;
@@ -106,24 +109,19 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 768px) {
   .card {
-    width: 325px;
+    width: 280px;
   }
 
   .card-title {
-    font-size: 18px;
+    font-size: var(--18px);
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 320px) {
   .card {
-    width: 250px;
-  }
-
-  .card-category,
-  .card-local {
-    font-size: 11px;
+    width: 90vw;
   }
 
   .card-body .start-end-date {

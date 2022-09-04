@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/models/UserModel';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -19,8 +19,8 @@ export class SidebarComponent implements OnInit {
   constructor(private storageService: StorageService,) { }
 
   ngOnInit(): void {
-    console.log(this.routerPath);
     this.showMenu('nav-toggle', 'navbar');
+    this.scrollDetect();
 
     if (this.storageService.isLoggedIn()) {
       this.currentUser = this.storageService.getUser();
@@ -47,6 +47,26 @@ export class SidebarComponent implements OnInit {
       });
     }
   }
+
+  scrollDetect(): void {
+    var lastScroll = 0;
+    const header = document.getElementById('header');
+
+    window.onscroll = function () {
+      let currentScroll = document.documentElement.scrollTop || document.body.scrollTop; // Get Current Scroll Value
+
+      if (currentScroll > 0 && lastScroll <= currentScroll) {
+        lastScroll = currentScroll;
+        header?.classList.add('active');
+        console.log("down");
+      } else if (currentScroll == 0) {
+        lastScroll = currentScroll;
+        header?.classList.remove('active');
+        console.log("up");
+      }
+    };
+  }
+
 
   containsRouterPath(path: string): boolean {
     return this.routerPath.includes(path);

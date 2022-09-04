@@ -88,7 +88,7 @@ export class SigninSignupComponent implements OnInit {
         currentImage?.classList.add("show");
 
         const textSlider = document.querySelector(".text-group") as HTMLDivElement;
-        textSlider.style.transform = `translateY(${-(Number(index) - 1) * 2.1}rem)`;
+        textSlider.style.transform = `translateY(${-(Number(index) - 1) * 2.2}rem)`;
 
         bullets.forEach(bull => bull.classList.remove("active"));
         bullet.classList.add("active");

@@ -6,7 +6,8 @@
 
 nav {
   background: var(--sidebar-color);
-  padding: 12px 0;
+  padding: 0 1rem;
+  height: calc(var(--header-height) + 0.5rem);
   width: 100%;
   display: flex;
   z-index: 1;
@@ -15,7 +16,6 @@ nav {
 }
 
 nav .logo {
-  margin-left: 12px;
   cursor: pointer;
   display: flex;
   width: fit-content;
@@ -23,25 +23,25 @@ nav .logo {
 }
 
 nav .logo .logo-icon {
-  width: 8vh;
+  width: var(--48px);
 }
 
 nav .logo .logo-name {
   margin-top: 8px;
-  width: 22vh;
+  max-width: 180px;
+  width: 100%;
   position: relative;
 }
 
 nav ul {
   display: flex;
-  margin-right: 16px;
-  font-size: 1.65vh;
-  gap: 16px;
+  font-size: var(--small-font-size);
+  gap: 1rem;
 }
 
 nav ul a {
   border-radius: 10px;
-  padding: 16px 24px;
+  padding: 12px 20px;
   transition: var(--tran-03);
 }
 
@@ -65,77 +65,15 @@ nav ul .button-register:hover {
   background: var(--third-color);
 }
 
-/* Tabs dashboard */
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tabs {
-  display: flex;
-  position: relative;
-  background-color: var(--primary-color-light);
-  padding: 8px;
-  border-radius: 8px;
-}
-
-input[type=radio] {
-  display: none;
-}
-
-.tab {
-  z-index: 1;
-  display: flex;
-  gap: 10px;
-  height: 42px;
-  width: 116px;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: colorTab 0.15s ease-in;
-}
-
-.tab i {
-  font-size: 22px;
-}
-
-input[type=radio]:checked+label p,
-input[type=radio]:checked+label i {
-  color: var(--sidebar-color);
-}
-
-.glider {
-  position: absolute;
-  display: flex;
-  height: 42px;
-  width: 116px;
-  z-index: 0;
-  border-radius: 6px;
-  background-color: var(--primary-color);
-  transition: var(--tran-02);
-}
-
-input[id=events-tab]:checked~.glider {
-  transform: translateX(0);
-}
-
-input[id=users-tab]:checked~.glider {
-  transform: translateX(100%);
-}
-
 /* User profile */
 
-.action {
+/* .action {
   margin: 10px;
-}
+} */
 
 .action .btn {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -149,7 +87,6 @@ input[id=users-tab]:checked~.glider {
   align-items: center;
   border-radius: 10px;
   transition: var(--tran-02);
-  margin-right: 10px;
 }
 
 .action .btn .toggle h3 {
@@ -178,7 +115,7 @@ input[id=users-tab]:checked~.glider {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  top: 110px;
+  top: calc(var(--header-height) + 1rem);
   right: 15px;
   background: white;
   max-width: 250px;
@@ -193,7 +130,7 @@ input[id=users-tab]:checked~.glider {
 }
 
 .action .menu.active {
-  top: 100px;
+  top: calc(var(--header-height) + 0.8rem);
   visibility: visible;
   opacity: 1;
 }
@@ -269,10 +206,11 @@ input[id=users-tab]:checked~.glider {
   background: var(--primary-color-light);
 }
 
-.action .menu ul li i {
-  font-size: 20px;
+.action .menu ul li span {
+  font-size: var(--22px);
   margin-right: 10px;
-  opacity: 0.5;
+  color: var(--text-color);
+  opacity: 0.4;
 }
 
 .action .menu ul li p {
@@ -284,63 +222,16 @@ input[id=users-tab]:checked~.glider {
   transition: var(--tran-02);
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1024px) {
 
   nav .logo .logo-name {
-    width: 20vh;
-  }
-
-  nav .logo .logo-icon {
-    width: 5vh;
-  }
-
-  .tabs {
-    padding: 6px;
-  }
-
-  .tab i {
-    font-size: 20px;
-  }
-
-  .tab p {
-    display: none;
-  }
-
-  .tab {
-    height: 42px;
-    width: 42px;
-  }
-
-  .glider {
-    height: 42px;
-    width: 42px;
-  }
-
-  .action .btn .toggle {
-    margin-right: 0;
-  }
-
-  .action .btn .toggle app-user-avatar {
-    display: flex;
-  }
-
-  .action .btn app-user-avatar,
-  .action .btn .toggle h3 {
-    display: none;
-  }
-
-  .action .btn .toggle {
-    border-radius: 25px 10px 10px 25px;
+    max-width: 160px;
   }
 }
 
-@media only screen and (max-width: 570px) {
+@media only screen and (max-width: 768px) {
   nav {
-    padding: 8px 0;
-  }
-
-  nav .logo .logo-icon {
-    width: 6vh;
+    height: var(--header-height);
   }
 
   nav .logo .logo-name {
@@ -348,39 +239,17 @@ input[id=users-tab]:checked~.glider {
   }
 
   nav ul {
-    gap: 8px;
+    gap: 0.5rem;
+    font-size: var(--small-font-size);
   }
 
   nav ul a {
-    padding: 12px 20px;
+    padding: 10px 16px;
   }
 
-  .tabs {
-    padding: 4px;
-  }
-
-  .tab i {
-    font-size: 18px;
-  }
-
-  .tab {
-    height: 35px;
-    width: 35px;
-  }
-
-  .glider {
-    height: 35px;
-    width: 35px;
-  }
-
-  .action .btn .toggle {
-    margin-right: 0;
-  }
-
-  .action .btn .toggle .toggle-person-img {
+  .action .btn .toggle app-user-avatar {
     display: flex;
-    width: 38px;
-    height: 38px;
+    margin-right: 8px;
   }
 
   .action .btn app-user-avatar,
@@ -389,11 +258,17 @@ input[id=users-tab]:checked~.glider {
   }
 
   .action .btn .toggle {
-    border-radius: 25px 10px 10px 25px;
+    border-radius: 25px;
+  }
+
+  .action .btn .toggle .toggle-person-img {
+    display: flex;
+    width: 38px;
+    height: 38px;
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 320px) {
   .action .menu {
     max-width: 70vw;
   }

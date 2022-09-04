@@ -11,8 +11,8 @@ main {
   min-height: 100vh;
   overflow: hidden;
   background: linear-gradient(180deg, #ED864F 0%, #FD2A3C 101.27%);
-  padding: 2rem;
   display: flex;
+  padding: 0 var(--22px);
   align-items: center;
   justify-content: center;
 }
@@ -25,17 +25,17 @@ a {
   position: relative;
   width: 100%;
   max-width: 1020px;
-  max-height: 565px;
+  max-height: 570px;
   height: 100vh;
   background-color: var(--card-color-primary);
-  border-radius: 3.3rem;
+  border-radius: var(--32px);
   box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
 }
 
 .inner-box {
   position: absolute;
-  width: calc(100% - 4.1rem);
-  height: calc(100% - 4.1rem);
+  width: calc(100% - 3rem);
+  height: calc(100% - 3rem);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -77,36 +77,37 @@ form.sign-up-form {
 }
 
 .logo img {
-  width: 50px;
+  width: 35px;
   margin-right: 0.3rem;
 }
 
 .logo h4 {
-  font-size: 1.7rem;
+  font-size: var(--18px);
   letter-spacing: -0.5px;
 }
 
 .heading {
   display: flex;
   flex-direction: column;
+  margin: var(--16px) 0;
 }
 
 .heading h2 {
-  font-size: 3rem;
+  font-size: var(--32px);
   font-weight: 700;
 }
 
 .heading h6 {
   color: #bababa;
-  font-weight: 500;
-  font-size: 1.3rem;
+  font-weight: var(--font-medium);
+  font-size: var(--14px);
   margin-top: 12px;
   display: inline;
 }
 
 .toggle {
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: var(--14px);
   font-weight: 600;
   transition: var(--tran-03);
 }
@@ -118,7 +119,7 @@ form.sign-up-form {
 .actual-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--16px);
 }
 
 .input-wrap {
@@ -127,7 +128,7 @@ form.sign-up-form {
 }
 
 .invalid-feedback span {
-  font-size: 1.2rem;
+  font-size: var(--12px);
   margin: 0;
   padding: 0;
   color: var(--primary-color);
@@ -148,7 +149,7 @@ form.sign-up-form {
   border: none;
   border-bottom: 1px solid #bbb;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: var(--16px);
   transition: var(--tran-04);
 }
 
@@ -161,7 +162,7 @@ input[type=password] {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5rem;
+  font-size: var(--16px);
   color: #bbb;
   pointer-events: none;
   transition: var(--tran-04);
@@ -172,7 +173,7 @@ input[type=password] {
   right: 3%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.8rem;
+  font-size: var(--18px);
   color: #bbb;
   cursor: pointer;
   transition: var(--tran-04);
@@ -183,7 +184,7 @@ input[type=password] {
 }
 
 .input-field.active+label {
-  font-size: 1.2rem;
+  font-size: var(--12px);
   top: -2px;
 }
 
@@ -201,13 +202,12 @@ input[type=password] {
   width: 100%;
   height: 43px;
   background-color: var(--text-color);
-  margin-top: 1rem;
   color: var(--text-btn-color);
   border: none;
   cursor: pointer;
-  border-radius: 1rem;
-  font-size: 1.4rem;
-  margin-bottom: 3rem;
+  border-radius: var(--10px);
+  font-size: var(--14px);
+  margin-bottom: 2rem;
   transition: var(--tran-03);
   font-weight: 600;
 }
@@ -218,7 +218,7 @@ input[type=password] {
 
 .text {
   color: #bbb;
-  font-size: 1.2rem;
+  font-size: var(--12px);
 }
 
 .text a {
@@ -256,10 +256,11 @@ main.sign-up-mode .carousel {
   left: 45%;
   top: 0;
   background-color: #ffe0d2;
-  border-radius: 2rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  padding-bottom: 2rem;
+  border-radius: var(--16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: var(--16px);
   overflow: hidden;
   transition: var(--tran-08-out);
 }
@@ -268,11 +269,11 @@ main.sign-up-mode .carousel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  place-items: center;
 }
 
 .image {
-  padding: 20% 7% 0 7%;
-  width: 100%;
+  width: 75%;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   opacity: 0;
@@ -280,7 +281,7 @@ main.sign-up-mode .carousel {
 }
 
 .img-2 {
-  padding: 12%;
+  margin-top: var(--18px);
 }
 
 .img-1,
@@ -301,9 +302,9 @@ main.sign-up-mode .carousel {
 }
 
 .text-wrap {
-  max-height: 2.5rem;
+  max-height: 2.2rem;
   overflow: hidden;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.2rem;
 }
 
 .text-group {
@@ -315,22 +316,22 @@ main.sign-up-mode .carousel {
 }
 
 .text-group h2 {
-  line-height: 2.3rem;
-  font-weight: 600;
-  font-size: 2.1rem;
+  line-height: 2.2rem;
+  font-weight: var(--font-semi-bold);
+  font-size: var(--22px);
 }
 
 .bullets {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   align-items: center;
   justify-content: center;
 }
 
 .bullets span {
   display: block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: var(--10px);
+  height: var(--10px);
   background-color: rgba(0, 0, 0, 0.27);
   border-radius: 50%;
   cursor: pointer;
@@ -338,16 +339,19 @@ main.sign-up-mode .carousel {
 }
 
 .bullets span.active {
-  width: 1.7rem;
+  width: var(--18px);
   background-color: var(--text-color);
   border-radius: 1rem;
 }
 
-
 @media (max-width: 850px) {
+  main {
+    padding: var(--22px);
+  }
+
   .box {
     height: auto;
-    max-height: 620px;
+    max-height: 100%;
     max-width: 550px;
     overflow: hidden;
   }
@@ -428,10 +432,41 @@ main.sign-up-mode .carousel {
   }
 
   .text-group h2 {
-    font-size: 1.6rem;
+    font-size: var(--20px);
   }
 
   form {
-    padding: 1rem 2rem 1.5rem;
+    padding: 1rem 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 350px) {
+  main {
+    padding: 0;
+  }
+
+  .box {
+    border-radius: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    padding: 1rem 0.25rem 0.25rem;
+  }
+
+  .heading h2 {
+    font-size: var(--24px);
+  }
+
+  .heading h6 {
+    font-size: var(--12px);
+  }
+
+  .toggle {
+    font-size: var(--12px);
   }
 }

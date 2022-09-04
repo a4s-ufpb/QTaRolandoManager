@@ -6,7 +6,7 @@ body {
 }
 
 .wrapper {
-  padding: 24px;
+  padding: 1rem;
 }
 
 .wrapper .input {
@@ -17,7 +17,7 @@ body {
 }
 
 .title {
-  font-size: 4rem;
+  font-size: var(--40px);
 }
 
 .search-wrap {
@@ -50,11 +50,10 @@ body {
 
 .search-wrap .search-content:focus-within {
   box-shadow: 0px 2px 1px var(--secondary-color);
-
 }
 
 .search-wrap .search-content .input::placeholder {
-  color: var(--placeholder-color);
+  color: var(--text-color-light);
 }
 
 .search-wrap .search-content .btn {
@@ -99,6 +98,7 @@ body {
 
 .select-menu {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: end;
 }
@@ -160,8 +160,9 @@ body {
 
 .select-menu .options {
   position: absolute;
+  top: 70px;
+  right: 0;
   padding: 12px;
-  margin-top: 50px;
   border-radius: 10px;
   background: var(--sidebar-color);
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
@@ -172,8 +173,9 @@ body {
 }
 
 .select-menu.active .options {
-  margin-top: 60px;
+  top: 58px;
   opacity: 1;
+  width: fit-content;
   visibility: visible;
 }
 
@@ -187,6 +189,8 @@ body {
   background: var(--sidebar-color);
   transition: var(--tran-02);
   font-weight: 500;
+  white-space: nowrap;
+  font-size: var(--14px);
 }
 
 .options .option:hover {
@@ -286,93 +290,102 @@ ul .item a i {
 
 @media only screen and (max-width: 1500px) {
   .events-content .event {
-    flex: 1 1 25%;
-    max-width: 25%;
-  }
-}
-
-@media only screen and (max-width: 1260px) {
-  .events-content .event {
-    flex: 1 1 25%;
+    flex: 1 1 20%;
     max-width: 50%;
   }
 }
 
-@media only screen and (max-width: 1230px) {
-  .events-content .event {
-    flex: 1 1 25%;
-    max-width: 50%;
-  }
-}
-
-
-@media only screen and (max-width: 850px) {
-  .title {
-    font-size: 3rem;
-  }
-
+@media only screen and (max-width: 1024px) {
   .search-wrap {
     flex-direction: column;
   }
 
   .search-wrap .search-content {
     width: 100%;
+    height: var(--48px);
   }
 
   .filters {
     margin-left: auto;
   }
-}
 
-@media only screen and (max-width: 570px) {
-  .wrapper {
-    padding: 12px;
+  .select-menu #category_btn,
+  .select-menu #date_btn {
+    height: var(--48px);
+    gap: var(--12px);
   }
 
+  #category_btn i,
+  #date_btn i {
+    font-size: var(--22px);
+  }
+
+  .options .option {
+    height: var(--48px);
+    padding: 0 10px;
+    font-size: var(--14px);
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
   .title {
-    font-size: 2.5rem;
+    font-size: var(--38px);
   }
 
   .search-wrap {
     padding: 12px 0px;
   }
 
+  .search-wrap .search-content {
+    height: var(--44px);
+  }
+
   .search-wrap .search-content .input {
-    font-size: 14px;
+    font-size: var(--14px);
   }
 
   .filters {
     margin-left: 0;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
+  .filters p {
+    font-size: var(--14px);
+  }
+
   .filters .selecters {
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
   .filters span {
-    font-size: 10px;
+    font-size: var(--12px);
+  }
+
+  .select-menu .options,
+  .select-menu.active .options {
+    right: inherit;
+    left: 0;
   }
 
   .select-menu #category_btn,
   .select-menu #date_btn {
-    height: 35px;
-    padding: 0 6px;
-    border-radius: 6px;
+    height: var(--44px);
+    gap: var(--10px);
   }
 
-  .select-menu .options {
-    margin-top: 35px;
-    margin-left: 12px;
-  }
-
-  .select-menu.active .options {
-    margin-top: 45px;
+  #category_btn i,
+  #date_btn i {
+    font-size: var(--20px);
   }
 
   .options .option {
-    font-size: 12px;
+    height: var(--44px);
+    padding: 0 10px;
+    font-size: var(--14px);
   }
 
   .pagination-custom ul .item a {
@@ -384,18 +397,17 @@ ul .item a i {
     height: 35px;
     width: 35px;
   }
-
 }
 
-@media only screen and (max-width: 520px) {
-  .filters {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+@media only screen and (max-width: 320px) {
+
+  .select-menu:nth-child(2) .options,
+  .select-menu.active:nth-child(2) .options {
+    right: 0;
+    left: inherit;
   }
 
-  #category_btn i,
-  #date_btn i {
-    font-size: 18px;
+  .title {
+    font-size: var(--28px);
   }
 }

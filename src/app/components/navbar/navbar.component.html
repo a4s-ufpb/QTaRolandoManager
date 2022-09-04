@@ -32,16 +32,20 @@
         <ul>
           <hr>
           <li>
-            <i class="eva eva-person-outline"></i>
+            <span class="material-symbols-rounded">person</span>
             <p>Minha conta</p>
           </li>
           <li [routerLink]="['/dashboard/eventos']">
-            <i class="eva eva-pie-chart-outline"></i>
+            <span class="material-symbols-rounded">dashboard</span>
             <p>Dashboard</p>
+          </li>
+          <li [routerLink]="['/manager/criar-evento']">
+            <span class="material-symbols-rounded nav-icon">event</span>
+            <p>Criar evento</p>
           </li>
           <hr>
           <li id="logout-button" (click)="this.logout()">
-            <i class="eva eva-log-out-outline"></i>
+            <span class="material-symbols-rounded">logout</span>
             <p>Sair</p>
           </li>
         </ul>
