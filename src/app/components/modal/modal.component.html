@@ -1,0 +1,26 @@
+<body>
+  <section class="modal container">
+    <div class="modal-container" [ngClass]="{'show-modal': this.showModal}" id="modal_container">
+      <div class="modal-content">
+        <div class="modal-close" title="Fechar" (click)="this.closeBtn()">
+          <i class="eva eva-close"></i>
+        </div>
+
+        <div class="modal-icon-bg" [style]="{'background': this.bgColor}">
+          <i class="eva modal-icon" [ngClass]="this.icon"></i>
+        </div>
+
+        <h1 class="modal-tittle">{{this.title}}</h1>
+        <p class="modal-description">{{this.message}}</p>
+
+        <button (click)="this.confirmBtn()" class="modal-button modal-button-width">
+          {{this.confirmText}}
+        </button>
+
+        <button (click)="this.cancelBtn()" class="modal-button-link">
+          {{this.cancelText}}
+        </button>
+      </div>
+    </div>
+  </section>
+</body>
