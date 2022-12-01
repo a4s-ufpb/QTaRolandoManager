@@ -1,14 +1,16 @@
+import { Time } from '@angular/common';
+import { Category } from './Category';
 export interface EventModel {
   id?: number;
   title: string;
   subtitle: string;
-  categoryId: number;
+  categories: Category[];
   description: string;
   initialDate: Date;
   finalDate: Date;
   imagePath: string;
-  eventModalityId: number;
-  location: string;
-  phone: string;
-  site: string;
+  modality: string;
+  location?: string;
+  phone?: string;
+  site?: string;
 }
