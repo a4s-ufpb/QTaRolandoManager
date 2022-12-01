@@ -8,25 +8,33 @@
 }
 
 :root {
-  --sidebar-width: 219px;
+  --sidebar-width: 250px;
+  --padding-after-sidebar: 17rem;
   --header-height: 3.5rem;
 
   /*====== Colors ======*/
-  --body-color: #F9F6FD;
+  --body-color: #fcf9f7;
   --sidebar-color: #FFF;
   --container-color: #FFFFFF;
-  --primary-color: #FC2E3C;
+  --primary-color: #fc2e3c;
   --secondary-color: #ED834E;
   --third-color: #8371fd;
   --confirm-color: green;
-  --primary-color-light: #eaedf5;
+  --primary-color-dark: #111315;
+  --primary-color-light: #d0d7de52;
   --placeholder-color: #BFBFBF;
+  --input-background-color: #f7f7f7;
+  --input-border-color: #dadce0;
   --toggle-color: #DDD;
 
-  --text-color: #19181B;
+  --text-color: #131418;
   --text-color-light: #A5A1AA;
   --text-btn-color: #FFF;
+  --text-btn-dark: #131418;
   --text-color-secondary: #878787;
+
+  --hover-dark: rgba(177, 186, 196, 0.12);
+  --hover-light: var(--primary-color-light);
 
   --card-color-primary: #FFF;
   --card-color-primary-light: #F3F3F3;
@@ -43,21 +51,26 @@
   --category-6: #3BB2B8;
 
   /* Font and typography */
+  --8px: 0.5rem;
   --10px: 0.625rem;
+  --11px: 0.688rem;
   --12px: 0.75rem;
+  --13px: 0.813rem;
   --14px: 0.875rem;
   --16px: 1rem;
   --18px: 1.125rem;
-  --20px: 1.125rem;
+  --20px: 1.25rem;
   --22px: 1.375rem;
   --24px: 1.5rem;
   --28px: 1.75rem;
   --32px: 2rem;
   --34px: 2.125rem;
+  --36px: 2.25rem;
   --38px: 2.375rem;
   --40px: 2.5rem;
   --44px: 2.75rem;
   --48px: 3rem;
+  --50px: 3.125rem;
   --normal-font-size: 0.85rem;
   --small-font-size: 0.8rem;
   --smaller-font-size: 0.8rem;
@@ -80,11 +93,13 @@
   --toast-tran-05: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 
   /*====== Shadow ======*/
-  --shadow-card: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-card: 00px 2px 10px rgba(0, 0, 0, 0.05);
   --shadow-card-hover: 0px 2px 10px rgba(0, 0, 0, 0.25);
   --shadow-pagination: 0px 2px 1px rgba(0, 0, 0, 0.1);
   --shadow-banner: 0px 2px 5px rgba(0, 0, 0, 0.1);
   --shadow-toast: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+  --max-width-content: 1248px;
 }
 
 @media screen and (min-width: 1024px) {
@@ -108,6 +123,19 @@ body {
 
 h1 {
   font-size: 1.6rem;
+}
+
+.invalid-feedback *,
+.invalid-feedback {
+  font-size: var(--12px);
+  margin: 0;
+  padding: 0;
+  color: var(--primary-color);
+}
+
+.input-invalid,
+quill-editor.input-invalid .ql-container.ql-snow {
+  border-color: var(--primary-color) !important;
 }
 
 .eva {
@@ -136,7 +164,7 @@ h1 {
 
 ::-webkit-scrollbar {
   width: 15px;
-  background: rgba(42, 47, 67, 0.05);
+  /* background: rgba(42, 47, 67, 0.05); */
 }
 
 /* Track */
@@ -165,4 +193,52 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* Date Time Picker */
+.owl-dt-container {
+  border-radius: 6px;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+  background-color: var(--secondary-color);
+}
+
+.owl-dt-container-control-button {
+  font-weight: var(--font-medium);
+}
+
+.owl-dt-container-control-button:nth-child(2) span {
+  color: var(--secondary-color);
+}
+
+/* Decription */
+
+quill-editor {
+  width: 100%;
+}
+
+.ql-snow.ql-toolbar button {
+  margin: 6px !important;
+  padding: 2px !important;
+}
+
+.ql-snow .ql-picker-label {
+  border-radius: 3px !important;
+}
+
+.ql-toolbar.ql-snow {
+  border: none !important;
+  padding: 0 0 12px 0 !important;
+}
+
+.ql-container.ql-snow {
+  border-radius: 0 0 6px 6px;
+  border-top: 1.9px solid var(--input-border-color) !important;
+  border: 1.9px solid var(--input-border-color);
+  background-color: #fafafa;
+}
+
+.ql-container.ql-snow:focus-within {
+  border-color: var(--secondary-color) !important;
 }
