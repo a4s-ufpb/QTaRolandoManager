@@ -1,3 +1,4 @@
+import { EncryptHelper } from './../../services/rsa.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -50,7 +51,8 @@ export class SigninSignupComponent implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private rsaHelper: EncryptHelper
   ) {
     this.activatedRoute.queryParams.subscribe(obs => {
       this.isLogin = obs['type'] == 'signIn';
@@ -115,7 +117,7 @@ export class SigninSignupComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (!this.isLogin) {
-      if (this.signUpForm.invalid) {
+      if (this.signUpForm.invalid || this.signUpForm.controls.checkbox.value == false) {
         return;
       }
       else {
@@ -135,7 +137,7 @@ export class SigninSignupComponent implements OnInit {
     const user: UserRequestModel = ({
       username: this.signUpForm.controls.name.value!,
       email: this.signUpForm.controls.email.value!,
-      password: this.signUpForm.controls.password.value!,
+      password: this.rsaHelper.encryptWithPublicKey(this.signUpForm.controls.password.value!),
       roles: [],
     });
     this.authService.register(user).subscribe({
@@ -153,19 +155,19 @@ export class SigninSignupComponent implements OnInit {
   }
 
   login(email?: string, password?: string) {
+    console.log(this.rsaHelper.encryptWithPublicKey(this.signInForm.controls.password.value!))
     this.authService.login(
       email ?? this.signInForm.controls.email.value!,
-      password ?? this.signInForm.controls.password.value!
+      password ?? this.rsaHelper.encryptWithPublicKey(this.signInForm.controls.password.value!)
     ).subscribe({
       next: (data) => {
-        console.log(data);
         this.storageService.saveUser(data);
 
         this.errorMessage = "";
         this.isLogged = true;
         this.roles = this.storageService.getUser().roles;
         this.router.navigate(['/eventos']).then(() => {
-          window.location.reload();
+          // window.location.reload();
         });
       },
       error: (err) => {
