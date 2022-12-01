@@ -1,56 +1,66 @@
-<nav>
-  <div [routerLink]="['/']" class="logo">
-    <img src="../../../assets/images/icon.svg" class="logo-icon">
-    <img src="../../../assets/images/name-orange.svg" class="logo-name">
-  </div>
+<div class="container">
+  <section>
+    <nav>
+      <div class="content">
+        <a [routerLink]="['/']" class="logo">
+          <img src="../../../assets/images/ticket-logo.svg" class="logo-icon">
+          <h4 class="logo-name">QTáRolando?</h4>
+        </a>
 
-  <ul *ngIf="!isLoggedIn">
-    <li><a class="button-login" [routerLink]="['/login']" [queryParams]="{type: 'signIn'}">Entrar</a></li>
-    <li><a class="button-register" [routerLink]="['/login']" [queryParams]="{type: 'singUp'}">Cadastrar-se</a></li>
-  </ul>
-
-
-  <div *ngIf="isLoggedIn" class="user-profile">
-    <div class="action">
-      <div class="btn">
-        <app-user-avatar height="0.92em" width="0.92em" class="header-img"></app-user-avatar>
-        <div class="toggle" (click)="this.menuToggle()" #toggleButton>
-          <h3>{{currentUser.username}}</h3>
-          <app-user-avatar height="0.92em" width="0.92em" class="header-img"></app-user-avatar>
-          <i class="eva eva-chevron-down-outline"></i>
-        </div>
-      </div>
-      <div class="menu" [ngClass]='this.menuActive ? "active" : ""' #menu>
-        <div class="header">
-          <app-user-avatar height="0.92em" width="0.92em" class="header-img"></app-user-avatar>
-          <div class="name-email">
-            <h3>{{currentUser.username}}</h3>
-            <span>{{currentUser.email}}</span>
-          </div>
-        </div>
-        <!-- <h2>Minha conta</h2> -->
-        <ul>
-          <hr>
-          <li>
-            <span class="material-symbols-rounded">person</span>
-            <p>Minha conta</p>
-          </li>
-          <li [routerLink]="['/dashboard/eventos']">
-            <span class="material-symbols-rounded">dashboard</span>
-            <p>Dashboard</p>
-          </li>
-          <li [routerLink]="['/manager/criar-evento']">
-            <span class="material-symbols-rounded nav-icon">event</span>
-            <p>Criar evento</p>
-          </li>
-          <hr>
-          <li id="logout-button" (click)="this.logout()">
-            <span class="material-symbols-rounded">logout</span>
-            <p>Sair</p>
+        <ul *ngIf="!isLoggedIn">
+          <li><a class="button-login" [routerLink]="['/login']" [queryParams]="{type: 'signIn'}">Entrar</a></li>
+          <li><a class="button-register" [routerLink]="['/login']" [queryParams]="{type: 'singUp'}">Cadastrar-se</a>
           </li>
         </ul>
+
+
+        <div *ngIf="isLoggedIn" class="user-profile">
+          <div class="action">
+            <div class="btn">
+              <app-user-avatar height="3em" width="3em" class="header-img"></app-user-avatar>
+              <div class="toggle" (click)="this.menuToggle()" #toggleButton>
+                <h3>{{currentUser.username}}</h3>
+                <app-user-avatar height="3em" width="3em" class="header-img"></app-user-avatar>
+                <i class="eva eva-chevron-down-outline"></i>
+              </div>
+            </div>
+            <div class="menu" [ngClass]='this.menuActive ? "active" : ""' #menu>
+              <div class="header">
+                <app-user-avatar height="3em" width="3em" class="header-img"></app-user-avatar>
+                <div class="name-email">
+                  <h3>{{currentUser.username}}</h3>
+                  <span>{{currentUser.email}}</span>
+                </div>
+              </div>
+              <!-- <h2>Minha conta</h2> -->
+              <ul>
+                <hr>
+                <li [routerLink]="['/manager/minha-conta']">
+                  <i class="eva eva-person-outline"></i>
+                  <p>Minha conta</p>
+                </li>
+                <li [routerLink]="['/dashboard/eventos']">
+                  <i class="eva eva-pie-chart-outline"></i>
+                  <p>Dashboard</p>
+                </li>
+                <li [routerLink]="['/manager/criar-evento']">
+                  <i class="eva eva-plus-circle-outline"></i>
+                  <p>Criar evento</p>
+                </li>
+                <hr>
+                <li id="logout-button" (click)="this.logout()">
+                  <i class="eva eva-log-out"></i>
+                  <p>Sair</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
-<router-outlet></router-outlet>
+    </nav>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </section>
+  <app-footer></app-footer>
+</div>

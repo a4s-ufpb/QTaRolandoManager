@@ -1,136 +1,150 @@
-<body>
-  <!-- HEADER -->
-  <header class="header" id="header">
-    <div class="header-container">
-      <app-user-avatar height="0.92em" width="0.92em" class="header-img"></app-user-avatar>
-      <!-- <img src="../../../assets/images/user-temp.jpg" class="header-img" alt=""> -->
+<body id="body">
+  <div class="nav-content">
+    <nav>
+      <div class="sidebar-top">
+        <span class="shrink-btn">
+          <span class="material-symbols-rounded">
+            chevron_left
+          </span>
+        </span>
+        <img src="../../../assets/images/icon.svg" [routerLink]="'/'" class="logo">
+        <h3 class="title hide" [routerLink]="'/'">QTáRolando?</h3>
+      </div>
 
-      <h4 class="header-logo">Manager</h4>
-
-      <!-- <div class="header-search">
-        <input type="search" placeholder="Pesquisar" class="header-input">
-        <i class="eva eva-search-outline header-icon"></i>
+      <!-- <div class="search">
+        <i class="eva eva-search-outline"></i>
+        <input type="text" class="hide" placeholder="Pesquisa rápida...">
       </div> -->
 
-      <div class="header-toggle">
-        <i class="eva eva-menu-outline eva-close-outline" id="nav-toggle"></i>
-      </div>
-    </div>
-  </header>
+      <div class="content-scroll">
+        <div class="sidebar-links">
 
-  <!-- NAV -->
-  <div class="nav" id="navbar">
-    <nav class="nav-container">
-      <div>
-        <a class="nav-logo" [routerLink]="['']">
-          <img src="../../../assets/images/icon.svg" alt="">
-          <span class="nav-logo-name">QTáRolando?</span>
-        </a>
-
-
-      </div>
-      <div class="nav-lists">
-        <div class="nav-list">
-          <div class="nav-items">
-            <h3 class="nav-subtitle">Dashboard</h3>
-            <a class="nav-link" [ngClass]="{active: this.containsRouterPath('dashboard/eventos')}"
-              [routerLink]="['dashboard/eventos']">
-              <span class="material-symbols-rounded nav-icon">calendar_month</span>
-              <span class="nav-name">Eventos</span>
-            </a>
-
-            <!-- <div class="nav-dropdown">
-              <a class="nav-link">
-                <i class="eva eva-people-outline nav-icon"></i>
-                <span class="nav-name">Users</span>
-                <i class="eva eva-chevron-down-outline nav-icon nav-dropdown-icon"></i>
-              </a>
-
-              <div class="nav-dropdown-collapse">
-                <div class="nav-dropdown-content">
-                  <a class="nav-dropdown-item">Passwords</a>
-                  <a class="nav-dropdown-item">Mail</a>
-                  <a class="nav-dropdown-item">Accounts</a>
+          <h4 class="subtitle hide">Dashboard</h4>
+          <ul>
+            <!-- <div class="active-tab" [ngClass]="{active: !this.containsRouterPath('minha-conta')}"></div> -->
+            <li class="tooltip-element" data-tooltip="0">
+              <a data-active="0">
+                <div class="icon">
+                  <i class="eva eva-people-outline"></i>
+                  <i class="eva eva-people"></i>
                 </div>
-              </div>
-            </div> -->
+                <span class="link hide">Usuários</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="1">
+              <a [ngClass]="{active: this.containsRouterPath('dashboard/eventos')}" [routerLink]="['dashboard/eventos']"
+                data-active="1">
+                <div class="icon">
+                  <i class="eva eva-calendar-outline"></i>
+                  <i class="eva eva-calendar"></i>
+                </div>
+                <span class="link hide">Eventos</span>
+              </a>
+            </li>
+            <div class="tooltip">
+              <span>Usuários</span>
+              <span>Eventos</span>
+            </div>
+          </ul>
 
-            <a *ngIf="this.showUsersOptions" class="nav-link"
-              [ngClass]="{active: this.containsRouterPath('dashboard/usuarios')}" [routerLink]="['dashboard/usuarios']">
-              <span class="material-symbols-rounded nav-icon">group</span>
-              <span class="nav-name">Usuários</span>
+          <h4 class="subtitle hide">Menu</h4>
+
+          <ul>
+            <li class="tooltip-element" data-tooltip="0">
+              <a [ngClass]="{active: this.containsRouterPath('criar-evento')}" [routerLink]="['manager/criar-evento']"
+                data-active="2">
+                <div class="icon">
+                  <i class="eva eva-plus-circle-outline"></i>
+                  <i class="eva eva-plus-circle"></i>
+                </div>
+                <span class="link hide">Criar Evento</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="1">
+              <a [ngClass]="{active: this.containsRouterPath('editar-evento')}" [routerLink]="['manager/editar-evento']"
+                data-active="3">
+                <div class="icon">
+                  <i class="eva eva-edit-2-outline"></i>
+                  <i class="eva eva-edit-2"></i>
+                </div>
+                <span class="link hide">Editar Eventos</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="2">
+              <a data-active="4">
+                <div class="icon">
+                  <i class="eva eva-clock-outline"></i>
+                  <i class="eva eva-clock"></i>
+                </div>
+                <span class="link hide">Eventos Passados</span>
+              </a>
+            </li>
+            <div class="tooltip">
+              <span>Criar Evento</span>
+              <span>Editar Evento</span>
+              <span>Eventos Passados</span>
+            </div>
+          </ul>
+
+          <h4 class="subtitle hide">Gestão</h4>
+
+          <ul>
+            <li class="tooltip-element" data-tooltip="0">
+              <a data-active="5">
+                <div class="icon">
+                  <i class="eva eva-person-add-outline"></i>
+                  <i class="eva eva-person-add"></i>
+                </div>
+                <span class="link hide">Cadastrar Usuário</span>
+              </a>
+            </li>
+            <li class="tooltip-element" data-tooltip="1">
+              <a data-active="6">
+                <div class="icon">
+                  <i class="eva eva-person-done-outline"></i>
+                  <i class="eva eva-person-done"></i>
+                </div>
+                <span class="link hide">Editar Usuários</span>
+              </a>
+            </li>
+            <div class="tooltip">
+              <span>Cadastrar Usuário</span>
+              <span>Editar Usuários</span>
+            </div>
+          </ul>
+        </div>
+
+        <div class="sidebar-footer">
+          <a class="account tooltip-element" [routerLink]="['manager/minha-conta']"
+            [ngClass]="{active: this.containsRouterPath('minha-conta')}" data-tooltip="0">
+            <i class="eva eva-person-outline"></i>
+            <i class="eva eva-person"></i>
+          </a>
+          <div class="admin-user tooltip-element" data-tooltip="1">
+            <div class="admin-profile hide" [routerLink]="['manager/minha-conta']"
+              [ngClass]="{active: this.containsRouterPath('minha-conta')}">
+              <app-user-avatar height="2.9rem" width="2.9rem"></app-user-avatar>
+              <div class="admin-info">
+                <h3>Anderson Barbosa</h3>
+                <h5>Admin</h5>
+              </div>
+            </div>
+            <a class="log-out" (click)="logout()">
+              <i class="eva eva-log-out-outline"></i>
             </a>
           </div>
-
-          <div class="nav-items">
-            <h3 class="nav-subtitle">Menu</h3>
-
-            <!-- <div class="nav-dropdown">
-              <a class="nav-link">
-                <i class="eva eva-bell-outline nav-icon"></i>
-                <span class="nav-name">Notification</span>
-                <i class="eva eva-chevron-down-outline nav-icon nav-dropdown-icon"></i>
-              </a>
-
-              <div class="nav-dropdown-collapse">
-                <div class="nav-dropdown-content">
-                  <a class="nav-dropdown-item">Blocked</a>
-                  <a class="nav-dropdown-item">Silenced</a>
-                  <a class="nav-dropdown-item">Publish</a>
-                  <a class="nav-dropdown-item">Program</a>
-                </div>
-              </div>
-            </div> -->
-
-            <a class="nav-link" [ngClass]="{active: this.containsRouterPath('criar-evento')}"
-              [routerLink]="['manager/criar-evento']">
-              <span class="material-symbols-rounded nav-icon">event</span>
-              <span class="nav-name">Criar evento</span>
-            </a>
-
-            <a class="nav-link">
-              <span class="material-symbols-rounded nav-icon">edit_calendar</span>
-              <span class="nav-name">Editar eventos</span>
-            </a>
-
-            <a class="nav-link">
-              <span class="material-symbols-rounded nav-icon">event_repeat</span>
-              <span class="nav-name">Eventos passados</span>
-            </a>
-          </div>
-
-          <div *ngIf="this.showUsersOptions" class="nav-items">
-            <h3 class="nav-subtitle">Gestão</h3>
-
-            <a class="nav-link">
-              <span class="material-symbols-rounded nav-icon">person_add</span>
-              <span class="nav-name">Cadastrar usuário</span>
-            </a>
-
-            <a class="nav-link">
-              <span class="material-symbols-rounded nav-icon">manage_accounts</span>
-              <span class="nav-name">Editar usuários</span>
-            </a>
+          <div class="tooltip">
+            <span>Minha Conta</span>
+            <span>Sair</span>
           </div>
         </div>
-        <div class="nav-bottom-items">
-          <a class="nav-link nav-logout">
-            <span class="material-symbols-rounded nav-icon">person</span>
-            <span class="nav-name">Minha conta</span>
-          </a>
-
-          <a class="nav-link nav-logout">
-            <span class="material-symbols-rounded nav-icon">logout</span>
-            <span class="nav-name">Sair</span>
-          </a>
-        </div>
       </div>
+
     </nav>
   </div>
-
   <main>
-    <section>
+    <div class="content">
       <router-outlet></router-outlet>
-    </section>
+    </div>
   </main>
 </body>

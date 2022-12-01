@@ -1,10 +1,10 @@
 <section>
   <div class="dash-content">
     <div class="overview">
-      <div class="title">
-        <span class="material-symbols-rounded title-icon">speed</span>
-        <span class="text">Dashboard</span>
-      </div>
+      <p class="title-page">Visão <b>Geral</b></p>
+      <!-- <div class="title">
+        <h1 class="text">Dashboard</h1>
+      </div> -->
 
       <!-- Cards -->
 
@@ -49,8 +49,10 @@
 
     <div class="activity">
       <div class="title">
-        <span class="material-symbols-rounded title-icon">schedule</span>
-        <span class="text">Atividade Recente</span>
+        <p class="title-page">Atividade <b>Recente</b></p>
+        <app-button [title]="'Ver todos'" [rightIcon]="'eva eva-arrow-forward-outline'"
+          [backgroundColor]="'var(--primary-color-dark)'" [fontColor]="'white'" [routerLink]="'view'">
+        </app-button>
       </div>
 
       <div class="recent-activity">

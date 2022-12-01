@@ -11,7 +11,7 @@
 
 .avatar::after {
   content: attr(data-label);
-  font-size: 1rem;
+  font-size: var(--font-size);
   color: var(--text-btn-color);
   font-weight: var(--font-semi-bold);
 }

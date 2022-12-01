@@ -11,7 +11,7 @@ export class UserAvatarComponent implements OnInit {
 
   @Input() width!: string;
   @Input() height!: string;
-  @Input() fontSize!: string;
+  @Input() fontSize: string = '1rem';
 
   isLoggedIn = false;
   currentUser!: UserModel;

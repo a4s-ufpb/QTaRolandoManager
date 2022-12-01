@@ -1,3 +1,8 @@
+section {
+  display: flex;
+  justify-content: center;
+}
+
 /* Dashboard */
 
 .dash-content {
@@ -19,12 +24,12 @@
 }
 
 .dash-content .title .title-icon {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   font-size: var(--22px);
   position: relative;
   background-color: var(--primary-color);
-  border-radius: 0.5rem;
+  border-radius: 6px;
   color: var(--text-btn-color);
   display: flex;
   align-items: center;
@@ -32,8 +37,18 @@
 }
 
 .dash-content .title .text {
-  font-size: var(--18px);
-  font-weight: var(--font-semi-bold);
+  font-size: var(--20px);
+  font-weight: bold;
+}
+
+.activity .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-page {
+  font-size: var(--28px);
 }
 
 /* Cards */
@@ -54,7 +69,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
 }
 
 .card-box .card .card-info {
@@ -93,7 +108,7 @@
   position: relative;
   background-color: var(--card-color-primary);
   padding: var(--20px);
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
   border-radius: var(--10px);
 }
 
@@ -113,7 +128,7 @@
   display: grid;
   background-color: var(--card-color-primary);
   padding: var(--20px);
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
   border-radius: var(--10px);
 }
 
@@ -124,6 +139,10 @@
 
 .recent-activity table thead td {
   font-weight: var(--font-semi-bold);
+}
+
+.recent-activity table tbody td {
+  font-size: var(--13px);
 }
 
 .recent-activity table tr {
@@ -175,6 +194,7 @@
 .category {
   padding: 3px 6px;
   border-radius: 4px;
+  font-size: var(--12px);
   color: var(--text-btn-color);
   white-space: nowrap;
   font-weight: var(--font-semi-bold);
@@ -203,7 +223,7 @@
   }
 
   .dash-content .title .text {
-    font-size: var(--22px);
+    font-size: var(--28px);
   }
 
   .card-box .card .value {
@@ -222,5 +242,9 @@
   .card-box {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--12px);
+  }
+
+  .card-info {
+    gap: var(--32px);
   }
 }
