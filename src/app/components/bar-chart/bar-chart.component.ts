@@ -22,9 +22,6 @@ export class BarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // for (let index = 0; index < this.labels.length; index++) {
-    //   this.colors.push(randomRGB());
-    // }
     this.colors = chroma.bezier(['#ED8B4E', '#F54EA2', '#7117EA', '#5B247A', '#622774', '#42E695'])
       .scale()
       .colors(this.labels.length);
