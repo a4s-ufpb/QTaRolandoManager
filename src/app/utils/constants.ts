@@ -1,10 +1,22 @@
 enum CategoriesEnum {
   Todos = '',
-  Festas_Shows = 'Festas e Shows',
-  Congressos_Palestras = 'Congressos e Palestras',
-  Cursos_Workshops = 'Cursos e Workshops',
+  Festas = 'Festas e Shows',
+  Gatronomia = 'Gastronomia',
+  Religiao = 'Religião e Espiritualidade',
+  Cursos = 'Cursos e Workshops',
+  Arte = 'Arte, Cinema e Lazer',
+  Geek = 'Games e Geek',
+  Congressos = 'Congressos e Palestras',
+  Moda = 'Moda e Beleza',
   Esportes = 'Esportes',
-  Arte_Cinema_Lazer = 'Arte, Cinema e Lazer'
+  Infantil = 'Infantil',
+  Saude = 'Saúde e Bem-Estar'
+}
+
+enum ModalitiesEnum {
+  Todos = '',
+  Presencial = 'Presencial',
+  Online = 'Online'
 }
 
 enum DatesEnum {
@@ -14,10 +26,12 @@ enum DatesEnum {
   Esta_Semana = 'Esta semana',
   Fim_Semana = 'Este fim de semana',
   Prox_Semana = 'Próxima semana',
-  Este_Mes = 'Este mês'
+  Este_Mes = 'Este mês',
+  Escolher_Intervalo = "Escolher intervalo"
 }
 
 export {
   CategoriesEnum,
+  ModalitiesEnum,
   DatesEnum,
 }
