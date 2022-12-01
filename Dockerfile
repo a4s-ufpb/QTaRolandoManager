@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install --silent
 COPY . .
-RUN npm run build-prod
+RUN NODE_OPTIONS="--max-old-space-size=8192" npm run build-prod
 
 ### STAGE 2: Run ###
 FROM nginx:1.23.2-alpine
