@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { EventModel } from 'src/app/models/EventModel';
 import { EventsService } from 'src/app/services/events.service';
 
+import { Clipboard } from '@angular/cdk/clipboard';
+
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
@@ -17,7 +19,8 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private location: Location,
     private service: EventsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private clipboard: Clipboard) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -45,7 +48,7 @@ export class EventDetailsComponent implements OnInit {
       tooltip?.classList.remove('active');
     }, 1000);
 
-    navigator.clipboard.writeText(window.location.href);
+    this.clipboard.copy(window.location.href);
   }
 
 }
