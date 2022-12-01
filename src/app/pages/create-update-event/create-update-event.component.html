@@ -1,0 +1,229 @@
+<app-modal [showModal]="this.showModal" [icon]="'eva-checkmark'"
+  [bgColor]="'linear-gradient(103.78deg, #ED844E 0%, #FB323D 98.17%)'" [title]="'Sucesso!'"
+  message="Evento {{this.isUpdate ? 'atualizado' : 'cadastrado'}} com sucesso! Deseja continuar {{this.isUpdate ? 'atualizando' : 'cadastrando'}}?"
+  [confirmBtn]="this.closeModal" [closeBtn]="this.closeModal" [cancelBtn]="this.cancelModal"
+  [cancelText]="'Ver eventos'" [confirmText]="'Continuar'">
+</app-modal>
+
+<section>
+  <form [formGroup]="eventFormGroup">
+    <div class="content">
+
+      <p class="title-page">Criar <b>Evento</b></p>
+
+      <div class="basic-info">
+        <div class="title">
+          <span class="text">Informações Básicas</span>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <div class="column">
+              <label for="name">Nome do Evento</label>
+              <input type="text" id="name" [ngClass]="{'input-invalid': this.submitted && this.hasError('title')}"
+                formControlName="title" placeholder="Insira o nome do evento">
+              <span class="invalid-feedback" *ngIf="this.submitted && this.hasError('title')?.['required']">
+                Por favor, insira o nome do evento
+              </span>
+            </div>
+            <div class="column">
+              <label for="name">Subtítulo do Evento (opcional)</label>
+              <input type="text" id="name" formControlName="subtitle" placeholder="Insira o subtítulo do evento">
+            </div>
+          </div>
+
+          <div class="row-image">
+            <!-- Upload image -->
+            <div class="column image-upload">
+              <div class="drag-drop">
+                <label class="control-label">Imagem de Divulgação (opcional)</label>
+                <div class="drag-drop-container" [ngClass]="{error: this.invalidFileType || this.invalidFileSize}"
+                  id="dropzone">
+                  <img [src]="this.bannerUrl" alt="" *ngIf="this.bannerUrl != null">
+                  <div *ngIf="this.bannerUrl == null" class="content">
+                    <span class="material-symbols-rounded">
+                      cloud_upload
+                    </span>
+                    <p>Arraste e solte uma imagem aqui</p>
+                    <p>OU</p>
+                    <button (click)="searchImage()">Selecionar Imagem</button>
+                  </div>
+                </div>
+                <input type="file" hidden id="fileSelectorInput">
+                <p *ngIf="this.invalidFileType" class="invalid-feedback">O arquivo deve ser do tipo JPEG, JPG ou PNG</p>
+                <p *ngIf="this.invalidFileSize" class="invalid-feedback">Tamanho máximo de 2MB</p>
+              </div>
+            </div>
+
+            <div class="column info-upload">
+              <div class="options-image" *ngIf="this.bannerUrl != null">
+                <button (click)="searchImage()">Trocar Imagem</button>
+                <button (click)="removeImage()">Remover Imagem</button>
+              </div>
+              <p>Dimensão recomendada: <b>1600 x 838</b><br>
+                (semelhando ao utilizado no Facebook).<br>
+                Tamanho máximo de <b>2MB</b>.<br>
+                <br>
+                Formatos válidos: <b>JPEG</b>, <b>JPG</b> ou <b>PNG</b>
+              </p>
+            </div>
+          </div>
+
+          <div class="row date">
+            <div class="column">
+              <label class="control-label">Data e Hora de Início</label>
+              <div [owlDateTimeTrigger]="fromdatepicker" class="input-date">
+                <input [ngClass]="{'input-invalid': this.submitted && selectedDates[0] == null}" readonly="readonly"
+                  autocomplete="off" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedDates"
+                  [owlDateTime]="fromdatepicker" placeholder="Selecionar início" class="form-control" name="fromDate"
+                  [selectMode]="'rangeFrom'">
+                <owl-date-time #fromdatepicker></owl-date-time>
+                <span class="trigger">
+                  <span class="material-symbols-rounded">
+                    calendar_month
+                  </span>
+                </span>
+              </div>
+              <span class="invalid-feedback" *ngIf="this.submitted && selectedDates[0] == null">
+                Selecione uma data de início
+              </span>
+            </div>
+            <div class="column">
+              <label class="control-label">Data e Hora de Fim</label>
+              <div [owlDateTimeTrigger]="fromenddatepicker" class="input-date">
+                <input [ngClass]="{'input-invalid': this.submitted && selectedDates[1] == null}" readonly="readonly"
+                  autocomplete="off" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedDates"
+                  [owlDateTime]="fromenddatepicker" placeholder="Selecionar fim" class="form-control" name="fromDate"
+                  [selectMode]="'rangeTo'">
+                <owl-date-time #fromenddatepicker></owl-date-time>
+                <span class="trigger">
+                  <span class="material-symbols-rounded">
+                    calendar_month
+                  </span>
+                </span>
+              </div>
+              <span class="invalid-feedback" *ngIf="this.submitted && selectedDates[1] == null">
+                Selecione uma data de fim
+              </span>
+            </div>
+
+            <!-- Categories -->
+            <div class="column">
+              <label for="name">Categoria</label>
+              <div class="container">
+                <!-- Button -->
+                <div [ngClass]="{'input-invalid': this.submitted && selectedCategories.length == 0}" class="select-btn"
+                  [ngClass]="{open: showCategories}" (click)="showMenu(true)">
+                  <span class="btn-text" *ngIf="this.selectedCategories.length == 0">Selecionar categoria</span>
+                  <span class="btn-text" *ngIf="this.selectedCategories.length == 1">1 categoria selecionada</span>
+                  <span class="btn-text" *ngIf="this.selectedCategories.length > 1">{{this.selectedCategories.length}}
+                    categorias selecionadas</span>
+                  <span class="material-symbols-rounded arrow-btn">
+                    keyboard_arrow_down
+                  </span>
+                </div>
+
+                <!-- Options -->
+                <ul class="list-items">
+                  <li class="item" (click)="selectCategory(category)" *ngFor="let category of categories">
+                    <span [ngClass]="{active: checkCategorySelected(category)}" class="checkbox">
+                      <span class="material-symbols-rounded check-icon">
+                        done
+                      </span>
+                    </span>
+                    <span class="item-text">{{category}}</span>
+                  </li>
+                </ul>
+              </div>
+              <span class="invalid-feedback" *ngIf="this.submitted && selectedCategories.length == 0">
+                Selecione ao menos uma categoria
+              </span>
+            </div>
+
+            <!-- Modalities -->
+            <div class="column">
+              <label for="name">Modalidade</label>
+              <div class="container">
+                <!-- Button -->
+                <div [ngClass]="{'input-invalid': this.submitted && selectedModality == 'Selecionar modalidade'}"
+                  class="select-btn" [ngClass]="{open: showModalities}" (click)="showMenu(false)">
+                  <span class="btn-text">{{selectedModality}}</span>
+                  <span class="material-symbols-rounded arrow-btn">
+                    keyboard_arrow_down
+                  </span>
+                </div>
+
+                <!-- Options -->
+                <ul class="list-items col">
+                  <li class="item" (click)="selectModality(modality)" *ngFor="let modality of modalities">
+                    <span [ngClass]="{active: checkModalitySelected(modality)}" class="checkbox radio">
+                    </span>
+                    <span class="item-text">{{modality}}</span>
+                  </li>
+                </ul>
+              </div>
+              <span class="invalid-feedback" *ngIf="this.submitted && selectedModality == 'Selecionar modalidade'">
+                Selecione a modalidade do evento
+              </span>
+            </div>
+          </div>
+
+          <div *ngIf="selectedModality === 'Presencial'" class="row">
+            <div class="column">
+              <label for="name">Local do Evento</label>
+              <input
+                [ngClass]="{'input-invalid': this.submitted && (form['location'].value == '' || form['location'].value == null)}"
+                type="text" id="address" formControlName="location" placeholder="Ex: Rua, Número, Local - Estado">
+              <span class="invalid-feedback"
+                *ngIf="this.submitted && (form['location'].value == '' || form['location'].value == null)">
+                Por favor, insira o local do evento
+              </span>
+            </div>
+          </div>
+
+          <div *ngIf="selectedModality === 'Online'" class="row">
+            <div class="column">
+              <label for="name">Link do Evento Online</label>
+              <input
+                [ngClass]="{'input-invalid': this.submitted && form['site'].value == '' || form['site'].value == null}"
+                type="text" id="site" formControlName="site" placeholder="Insira o link onde ocorrerá o evento">
+              <span class="invalid-feedback"
+                *ngIf="this.submitted && form['site'].value == '' || form['site'].value == null">
+                Por favor, insira um link
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="description">
+        <div class="title">
+          <span class="text">Descrição do Evento</span>
+        </div>
+        <div class="card">
+          <div class="row">
+            <div class="column">
+              <quill-editor [ngClass]="{'input-invalid': this.submitted && this.hasError('description')}"
+                formControlName="description" [styles]="{'min-height': '200px'}"
+                placeholder="Adicione aqui a descrição do seu evento..." [modules]="modules" [formats]="formats"
+                #editor>
+              </quill-editor>
+              <span class="invalid-feedback" *ngIf="this.submitted && this.hasError('description')?.['required']">
+                Por favor, insira uma descrição para o evento
+              </span>
+            </div>
+          </div>
+          <div class="options-form">
+            <button (click)="this.onCancel()" class="cancel-form">Cancelar</button>
+            <app-button [title]="this.isUpdate ? 'Atualizar' : 'Cadastrar'" [leftIcon]="'eva eva-checkmark'"
+              [backgroundColor]="'var(--third-color)'" [fontColor]="'white'" (click)="this.onSubmit()">
+            </app-button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</section>

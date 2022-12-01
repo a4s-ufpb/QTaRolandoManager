@@ -1,0 +1,98 @@
+<body>
+  <div class="wrapper">
+
+    <div class="containers" *ngIf="this.event$ | async as event">
+      <a class="back-button" (click)="goBack()">
+        <i class="eva eva-arrow-ios-back-outline"></i>
+      </a>
+      <div class="left-container">
+        <div class="description-content">
+          <div class="header">
+            <span *ngFor="let item of event.categories">{{item.name}}</span>
+            <div class="header-info">
+              <h1>{{this.event.title}} {{this.event.subtitle}}</h1>
+              <div class="address">
+                <i class="eva eva-pin-outline"></i>
+                <p>{{this.event.location}}</p>
+              </div>
+              <div class="dates">
+                <i class="eva eva-calendar-outline"></i>
+                <p>{{this.getStartEndDate(event).startDate}} - {{this.getStartEndDate(event).endDate}}</p>
+              </div>
+            </div>
+          </div>
+          <img *ngIf="event.imagePath !='' " class="banner" [src]="event.imagePath" alt="">
+          <div class="content">
+            <h2>Descrição do evento</h2>
+            <quill-view-html [content]="event.description">
+            </quill-view-html>
+          </div>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="social-container">
+          <h3>Compartilhar</h3>
+          <div class="social-links">
+            <ul class="links">
+              <a [href]="'https://web.whatsapp.com/send?text=http://localhost:4200/evento/'+event.id" target="_blank">
+                <li>
+                  <div class="logo-name">
+                    <i class='bx bxl-whatsapp'></i>
+                    <p>WhatsApp</p>
+                  </div>
+                  <i class='eva eva-arrow-ios-forward-outline'></i>
+                </li>
+              </a>
+              <span class="line"></span>
+              <a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=http://localhost:4200/evento/'+event.id"
+                target="_blank">
+                <li>
+                  <div class="logo-name">
+                    <i class='bx bxl-linkedin'></i>
+                    <p>LinkedIn</p>
+                  </div>
+                  <i class='eva eva-arrow-ios-forward-outline'></i>
+                </li>
+              </a>
+              <span class="line"></span>
+              <a [href]="'https://www.facebook.com/sharer/sharer.php?u=http://localhost:4200/evento/'+event.id"
+                target="_blank">
+                <li>
+                  <div class="logo-name">
+                    <i class='bx bxl-facebook'></i>
+                    <p>Facebook</p>
+                  </div>
+                  <i class='eva eva-arrow-ios-forward-outline'></i>
+                </li>
+              </a>
+              <span class="line"></span>
+              <li (click)="this.copyCurrentUrl()">
+                <div class="logo-name">
+                  <i class='eva eva-copy'></i>
+                  <p id="copy_tooltip">Link copiado!</p>
+                  <p>Copiar link</p>
+                </div>
+                <i class='eva eva-arrow-ios-forward-outline'></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="map-button">
+          <a href="" [href]="'https://www.google.com/maps/search/'+event.location" target="_blank">
+            <li>
+              <div class="logo-name">
+                <img src="../../../assets/images/map_icon.svg" class="map-icon">
+                Ver no mapa
+              </div>
+              <i class='eva eva-arrow-ios-forward-outline'></i>
+            </li>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</body>

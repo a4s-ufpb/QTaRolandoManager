@@ -1,0 +1,399 @@
+body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: var(--max-width-content);
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper .back-button {
+  display: flex;
+  width: fit-content;
+  height: 50px;
+  padding: 0 16px;
+  border-radius: 8px;
+  align-items: center;
+  font-weight: 500;
+  background: var(--sidebar-color);
+  box-shadow: var(--shadow-pagination);
+  transition: var(--tran-02);
+  cursor: pointer;
+}
+
+.back-button .eva {
+  font-size: 22px;
+  opacity: 0.35;
+}
+
+.wrapper .back-button:hover {
+  filter: brightness(90%);
+  box-shadow: none;
+}
+
+.wrapper .containers {
+  display: flex;
+  width: 100%;
+  gap: 24px;
+}
+
+.containers .left-container {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-color-primary);
+  gap: 24px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+}
+
+.left-container .header {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+}
+
+.left-container .header span {
+  font-weight: 600;
+  color: var(--text-color-light);
+}
+
+.left-container .header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header-info h1 {
+  font-size: var(--32px);
+}
+
+.header-info .address,
+.header-info .dates {
+  display: flex;
+  align-items: center;
+  gap: var(--14px);
+  font-weight: 500;
+}
+
+.header-info .address i,
+.header-info .dates i {
+  font-size: var(--24px);
+  color: var(--text-color-light);
+}
+
+.header-info .dates i {
+  color: var(--third-color);
+}
+
+.header-info .address p,
+.header-info .dates p {
+  font-size: var(--14px);
+}
+
+.left-container .content {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.left-container .content h2 {
+  padding: 12px;
+}
+
+.description-content #description {
+  font-size: 16px;
+}
+
+.description-content .banner {
+  width: 100%;
+  object-fit: cover;
+}
+
+.containers .right-container {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right-container .social-container,
+.map-button {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  border-radius: 10px;
+  background: var(--card-color-primary);
+  box-shadow: var(--shadow-card);
+  justify-content: space-between;
+}
+
+.social-container h3 {
+  margin: 24px 24px 12px 24px;
+}
+
+.social-container .social-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-links .links .line {
+  margin: 0 24px;
+  border-radius: 6px;
+  border: 1px solid var(--text-color);
+  background: var(--text-color);
+  opacity: 0.05;
+  display: block;
+}
+
+.social-links .links li,
+.map-button li {
+  padding: 12px;
+  margin: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: var(--tran-02);
+  background: var(--card-color-primary);
+}
+
+.social-links .links li:hover,
+.map-button li:hover {
+  filter: brightness(95%);
+}
+
+li .logo-name {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  position: relative;
+}
+
+.logo-name i {
+  font-size: 28px;
+}
+
+i.bxl-whatsapp {
+  color: #05B962;
+}
+
+i.bxl-linkedin {
+  color: #0961B9;
+}
+
+i.bxl-facebook {
+  color: #1871E7;
+}
+
+i.eva-copy {
+  color: var(--primary-color);
+}
+
+i.eva-arrow-ios-forward-outline {
+  opacity: 0.5;
+  font-size: 24px;
+}
+
+.logo-name .map-icon {
+  width: 34px;
+  border-radius: 6px;
+}
+
+.logo-name #copy_tooltip {
+  position: absolute;
+  left: 110%;
+  top: 2%;
+  z-index: 1;
+  color: var(--primary-color);
+  font-weight: 600;
+  background-color: var(--card-color-primary-light);
+  white-space: nowrap;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: var(--tran-02);
+}
+
+.logo-name #copy_tooltip.active {
+  opacity: 1;
+}
+
+#copy_tooltip.active:before {
+  content: "";
+  position: absolute;
+  left: -4%;
+  top: 35%;
+  transform: translateX(-50%) rotate(90deg);
+  border: 5px solid;
+  border-color: var(--card-color-primary-light) #0000 #0000 #0000;
+}
+
+@media only screen and (max-width: 1280px) {
+  .wrapper .containers {
+    gap: 18px;
+  }
+
+  .containers .right-container,
+  .containers .left-container {
+    gap: 18px;
+  }
+
+  .right-container .content {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .description-content h2 {
+    font-size: 2.5vh;
+  }
+
+  .description-content p {
+    font-size: 14px;
+  }
+
+  .social-container h3 {
+    margin: 18px;
+  }
+
+  .social-links .links li,
+  .map-button li {
+    padding: 6px;
+    margin: 12px;
+    font-size: 14px;
+  }
+
+  .logo-name i {
+    font-size: 28px;
+  }
+
+  i.eva-arrow-ios-forward-outline {
+    font-size: 20px;
+  }
+
+  .logo-name .map-icon {
+    width: 30px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .wrapper .containers {
+    flex-direction: column;
+  }
+
+  .containers .right-container,
+  .containers .left-container {
+    width: 100%;
+  }
+
+  .containers .right-container {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .containers .right-container {
+    flex-direction: column;
+  }
+
+  .header-info h1 {
+    font-size: var(--28px);
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .wrapper .back-button {
+    padding: 10px;
+    height: fit-content;
+    gap: 8px;
+  }
+
+  .back-button .eva {
+    font-size: 18px;
+  }
+
+  .left-container .header {
+    padding: var(--12px);
+  }
+
+  .left-container .content {
+    padding: 12px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .wrapper {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .wrapper .containers {
+    gap: 12px;
+  }
+
+  .containers .right-container,
+  .containers .left-container {
+    gap: 12px;
+  }
+
+  .left-container .header span {
+    font-size: var(--14px);
+  }
+
+  .header-info h1 {
+    font-size: var(--22px);
+  }
+
+  .header-info .address i,
+  .header-info .dates i {
+    font-size: var(--20px);
+  }
+
+  .header-info .address p,
+  .header-info .dates p {
+    font-size: var(--12px);
+  }
+
+  .description-content h2 {
+    font-size: 2.5vh;
+  }
+
+  .description-content p {
+    font-size: 12px;
+  }
+
+  .social-container h3 {
+    font-size: 2vh;
+  }
+
+  .social-links .links li,
+  .map-button li {
+    padding: 6px;
+    margin: 12px;
+    font-size: 13px;
+  }
+
+  .logo-name i {
+    font-size: 24px;
+  }
+
+  i.eva-arrow-ios-forward-outline {
+    font-size: 18px;
+  }
+
+  .logo-name .map-icon {
+    width: 28px;
+  }
+}

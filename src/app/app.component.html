@@ -1,0 +1,3 @@
+<app-sidebar *ngIf="showSideBar" [routerPath]="this.routerPath"></app-sidebar>
+<app-navbar *ngIf="showNavBar"></app-navbar>
+<router-outlet *ngIf="!showNavBar && !showSideBar"></router-outlet>

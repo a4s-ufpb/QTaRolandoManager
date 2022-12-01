@@ -1,0 +1,122 @@
+<body>
+  <div class="wrapper">
+    <div>
+      <div class="welcome">
+        <img class="background" src="../../../assets/images/sky_background.svg" alt="">
+        <div class="body">
+          <div class="left">
+            <h1>Explore <span>eventos</span>,<br>
+              <span>festivais</span> e <span>muito mais</span>!
+            </h1>
+            <p>Participe de novos eventos e explore novos lugares</p>
+            <div class="search-wrap">
+              <div class="search-content">
+                <input type="text" class="input" placeholder="Pesquisar eventos, festas..."
+                  [(ngModel)]="this.searchStr">
+                <div (click)="this.btnSearch()" class="icon icon-common active">
+                  <i class="eva eva-search-outline"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <img src="../../../assets/images/pages/events/welcome.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="filters-content">
+        <h1 class="title">Eventos</h1>
+
+        <div class="filters">
+          <p>Filtrar por:</p>
+
+          <div class="selecters">
+            <div class="select-menu" #modality_option>
+              <div class="select-btn" #modality_toggle id="modality_btn" (click)="openModalitiesFilter()"
+                [ngClass]="this.modalitySelected != 0 ? 'active' : ''">
+                <span class="sBtn-text" #modality_seleted>{{this.modalitySelected != 0 ? this.getModalitySelected() :
+                  'Modalidade'}}</span>
+                <i class="eva eva-arrow-ios-downward-outline" id="modality_arrow"
+                  *ngIf="this.modalitySelected == 0"></i>
+                <i class="eva eva-close-circle" id="modality_reset" *ngIf="this.modalitySelected != 0"
+                  (click)="selectModality('')"></i>
+              </div>
+
+              <ul class="options" #modality_menu>
+                <li class="option" (click)="selectModality(modality)" *ngFor="let modality of modalities">
+                  <span class="option-text">{{modality}}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="select-menu" #date_option>
+              <div class="select-btn" #date_toggle id="date_btn" (click)="openDatesFilter()"
+                [ngClass]="this.dateTypeSelected != 0 ? 'active' : ''">
+                <span class="sBtn-text" #date_seleted>{{this.dateTypeSelected != 0 ? this.getDateSelected()
+                  :'Data'}}</span>
+                <i class="eva eva-arrow-ios-downward-outline" id="date_arrow" *ngIf="this.dateTypeSelected == 0"></i>
+                <i class="eva eva-close-circle" id="date_reset" *ngIf="this.dateTypeSelected != 0"
+                  (click)="selectDate('')"></i>
+              </div>
+
+              <ul class="options" #date_menu>
+                <li class="option" (click)="selectDate(date)" *ngFor="let date of getDatesValues()">
+                  <span class="option-text">{{date}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-draggable-categories [selectedCategory]="getCategorySelected()" [onSelectCategory]="this.selectCategory">
+      </app-draggable-categories>
+
+      <div *ngIf="this.events$; else empty">
+        <div *ngIf="events.length != 0" class="events-content">
+          <div class="event"
+            *ngFor="let event of events | paginate: {itemsPerPage: this.pageSize, currentPage: this.page, totalItems: this.totalItems}">
+            <app-event-card [event]="event"></app-event-card>
+          </div>
+        </div>
+
+        <div *ngIf="events.length != 0">
+          <pagination-template #p="paginationApi" (pageChange)="this.page = $event">
+            <div class="pagination-custom">
+              <ul class="pagi">
+                <li class="item">
+                  <a *ngIf="!p.isFirstPage()" [class.disabled]="p.isFirstPage()" (click)="p.previous()"
+                    class="page-link arrow" aria-label="Anterior">
+                    <i class="eva eva-arrow-ios-back-outline"></i>
+                  </a>
+                </li>
+                <li *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value" class="page-item">
+                  <a (click)="p.setCurrent(page.value)" class="page-link"> {{ page.label }}
+                  </a>
+                </li>
+                <li class="item">
+                  <a *ngIf="!p.isLastPage()" [class.disabled]="p.isLastPage()" (click)="p.next()"
+                    class="page-link arrow" aria-label="Próxima">
+                    <i class="eva eva-arrow-ios-forward-outline"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </pagination-template>
+        </div>
+
+        <div *ngIf="events.length == 0" class="empty-content">
+          <img src="../../../assets/images/pages/events/empty.svg" alt="">
+          <h3>Sentimos muito, mas <span>nenhum</span> <br /> evento foi encontrado.</h3>
+        </div>
+      </div>
+      <ng-template #empty>
+        <div class="empty-content">
+          <img src="../../../assets/images/pages/events/empty.svg" alt="">
+          <h3>Sentimos muito, mas <span>nenhum</span> <br /> evento foi encontrado.</h3>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,27 @@
+button {
+  display: flex;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  gap: 8px;
+  font-size: var(--14px);
+  font-weight: var(--font-semi-bold);
+  border-radius: 6px;
+  transition: var(--tran-02);
+  border-color: transparent;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  box-shadow: var(--shadow-card-hover);
+}
+
+button .icon {
+  font-size: var(--18px);
+}
+
+@media only screen and (max-width: 768px) {
+  button {
+    padding: 8px 12px;
+  }
+}

@@ -1,0 +1,7 @@
+.bar-chart-content {
+  width: 99%;
+}
+
+canvas {
+  max-height: 50vh;
+}

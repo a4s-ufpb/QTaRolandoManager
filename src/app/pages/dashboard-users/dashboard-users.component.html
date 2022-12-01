@@ -1,0 +1,20 @@
+<body>
+  <!-- <app-sidebar [page]="this.page"></app-sidebar> -->
+  <div class="content">
+    <section>
+      <h1>Dashboard</h1>
+      <div class="charts-content">
+        <div class="bar-chart">
+          <app-bar-chart [label]="this.barLabel" [labels]="this.usernames" [data]="this.eventsByUser"></app-bar-chart>
+        </div>
+        <hr width="1">
+        <div class="pie-chart">
+          <app-pie-chart [label]="this.pieLabel" [labels]="this.usernames" [data]="this.eventsByUser"></app-pie-chart>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h1>Usuários</h1>
+    </section>
+  </div>
+</body>

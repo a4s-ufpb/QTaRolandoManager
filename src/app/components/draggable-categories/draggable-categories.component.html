@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="icon-arrow"><i id="left" class="eva eva-arrow-ios-back"></i></div>
+    <ul class="tabs-box">
+      <li class="tab" [ngClass]="{active: this.selectedCategory == ''}" (click)="this.onSelectCategory('')">Todos</li>
+      <li *ngFor="let category of this.categories" class="tab" [ngClass]="{active: this.selectedCategory == category}"
+        (click)="this.onSelectCategory(category)">
+        {{category}}</li>
+    </ul>
+    <div class="icon-arrow"><i id="right" class="eva eva-arrow-ios-forward-outline"></i></div>
+  </div>
+</div>

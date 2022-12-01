@@ -1,0 +1,142 @@
+body {
+  background: transparent;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.container {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.modal {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.modal-button {
+  display: inline-block;
+  background-color: var(--primary-color-dark);
+  color: var(--text-btn-color);
+  padding: 1rem 1.25rem;
+  font-weight: var(--font-medium);
+  border-radius: .5rem;
+  transition: var(--tran-03);
+}
+
+.modal-button:hover,
+.modal-close:hover {
+  background-color: var(--third-color);
+}
+
+.modal-container {
+  position: absolute;
+  pointer-events: all;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: flex-end;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: var(--tran-03);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--card-color-primary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem 2rem;
+  border-radius: 1rem 1rem 0 0;
+  transition: var(--tran-03);
+
+  transform: translateY(10%);
+}
+
+.modal-icon-bg {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .75rem;
+}
+
+.modal-icon {
+  color: var(--text-btn-color);
+  font-size: 5rem;
+}
+
+.modal-close {
+  display: inline-flex;
+  background-color: var(--primary-color-dark);
+  border-radius: .35rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.modal-close i {
+  color: var(--text-btn-color);
+  font-size: var(--28px);
+}
+
+.modal-title {
+  font-size: var(--24px);
+  font-weight: var(--font-medium);
+}
+
+.modal-description {
+  width: 75%;
+  margin-top: var(--12px);
+  margin-bottom: var(--24px);
+}
+
+.modal-button-width {
+  width: 90%;
+}
+
+.modal-button-link {
+  display: block;
+  margin: 1rem auto 0;
+  background-color: transparent;
+  font-weight: var(--font-medium);
+}
+
+.show-modal {
+  visibility: visible;
+  opacity: 1;
+}
+
+.show-modal .modal-content {
+  transform: translateY(0);
+}
+
+@media screen and (min-width: 576px) {
+  .modal-content {
+    margin: auto;
+    width: 380px;
+    border-radius: 1.25rem;
+  }
+}
