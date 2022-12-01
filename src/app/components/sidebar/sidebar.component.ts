@@ -36,6 +36,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       body.classList.toggle("shrink");
     });
 
+    if (window.innerWidth <= 1366) body.classList.toggle("shrink");
+
     // search.addEventListener("click", () => {
     //   body.classList.remove("shrink");
     //   let input = search.lastElementChild as HTMLInputElement;
@@ -72,7 +74,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.showMenu('nav-toggle', 'navbar');
     this.scrollDetect();
 
     if (this.routerPath.includes('/dashboard/usuarios')) this.sidebarIndex = 0;
@@ -85,24 +86,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       this.roles = this.currentUser.roles;
 
       this.showUsersOptions = this.roles.includes('ROLE_ADMIN');
-    }
-  }
-
-  showMenu(toggleId: string, navId: string): void {
-    const toggle = document.getElementById(toggleId),
-      nav = document.getElementById(navId);
-
-    if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        nav.classList.toggle('show-menu');
-        if (toggle.classList.contains('eva-menu-outline')) {
-          toggle.classList.add('eva-close-outline');
-          toggle.classList.remove('eva-menu-outline');
-        } else {
-          toggle.classList.add('eva-menu-outline');
-          toggle.classList.remove('eva-close-outline');
-        }
-      });
     }
   }
 
@@ -139,5 +122,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       }
     });
 
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const body = document.getElementById("body") as HTMLBodyElement;
+    if (window.innerWidth > 1366) body.classList.remove("shrink");
+    else body.classList.add("shrink");
   }
 }

@@ -6,7 +6,7 @@ body {
 
 main {
   display: flex;
-  width: 100%;
+  width: 70%;
   justify-content: center;
 }
 
@@ -66,9 +66,9 @@ main {
   position: absolute;
   top: 50%;
   right: -1.7rem;
-  height: 24px;
+  align-items: center;
+  justify-content: center;
   border-radius: 6px;
-  padding: 0.2rem;
   cursor: pointer;
   /* background-color: var(--secondary-color); */
   background: linear-gradient(135deg, #ED844E 0%, #FB323D 98.17%);
@@ -79,7 +79,8 @@ main {
   transition: var(--tran-02);
 }
 
-.shrink-btn span {
+.shrink-btn i {
+  margin: 0.4rem;
   color: var(--text-btn-color);
 }
 
@@ -175,12 +176,16 @@ main {
 }
 
 body.shrink a.active {
-  background-color: transparent;
+  background-color: var(--third-color-hover);
 }
 
 .sidebar-links a.active *,
 .sidebar-links a:hover * {
   color: var(--third-color);
+}
+
+.sidebar-links a:hover {
+  background-color: var(--primary-color-light);
 }
 
 .sidebar-links a .link {
@@ -225,7 +230,7 @@ body.shrink a.active {
 .sidebar-footer {
   position: relative;
   margin-top: auto;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .account {
