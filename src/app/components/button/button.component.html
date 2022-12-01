@@ -1,0 +1,5 @@
+<button [ngStyle]="{'background-color': this.backgroundColor, 'color': this.fontColor}">
+  <i class="icon {{this.leftIcon}}" [ngStyle]="{'color': this.fontColor}" *ngIf="this.leftIcon"></i>
+  {{this.title}}
+  <i class="icon {{this.rightIcon}}" [ngStyle]="{'color': this.fontColor}" *ngIf="this.rightIcon"></i>
+</button>
