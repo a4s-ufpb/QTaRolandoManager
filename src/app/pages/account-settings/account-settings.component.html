@@ -1,0 +1,71 @@
+<section>
+  <form [formGroup]="this.accountFormGroup">
+    <div class="content">
+
+      <p class="title-page">Minha <b>Conta</b></p>
+
+      <div class="info">
+        <div class="title">
+          <span class="text">Informações</span>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <div class="column">
+              <div class="avatar">
+                <div class="avatar-options">
+                  <app-user-avatar [height]="'2.7em'" [width]="'2.7em'" [fontSize]="'2.7rem'"></app-user-avatar>
+
+                  <input type="file" hidden>
+                  <button class="upload-image">
+                    <span class="material-symbols-rounded">edit</span>
+                  </button>
+                  <button class="remove-image">
+                    <span class="material-symbols-rounded">close</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line"></div>
+          <div class="row">
+            <div class="column">
+              <label for="name">Nome</label>
+              <input type="text" formControlName="name" id="name" placeholder="Insira seu nome">
+            </div>
+            <button class="btn-edit" (click)="this.changeInput('name')"
+              [innerText]="!this.isEditName ?'Editar' : 'Cancelar'"></button>
+          </div>
+          <div class="row">
+            <div class="column">
+              <label for="name">Email</label>
+              <input type="text" formControlName="email" id="name" placeholder="Insira seu email">
+            </div>
+            <button class="btn-edit" (click)="this.changeInput('email')"
+              [innerText]="!this.isEditEmail ?'Editar' : 'Cancelar'"></button>
+          </div>
+          <div class="row">
+            <div class="column">
+              <label for="name">Senha</label>
+              <input type="password" formControlName="password" id="name" placeholder="Insira uma nova senha">
+            </div>
+            <button class="btn-edit" (click)="this.changeInput('password')"
+              [innerText]="!this.isEditPassword ?'Alterar' : 'Cancelar'">Alterar</button>
+          </div>
+          <div class="options-form">
+            <button class="submit-form">
+              Salvar Conta</button>
+          </div>
+        </div>
+        <div class="logout">
+          <button class="signout-form">
+            <span class="material-symbols-rounded">
+              logout
+            </span>
+            Sair</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</section>
