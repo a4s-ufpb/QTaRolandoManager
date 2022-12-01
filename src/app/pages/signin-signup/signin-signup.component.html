@@ -4,10 +4,10 @@
       <div class="inner-box">
         <div class="forms-wrap">
           <form action="#" [formGroup]="this.signInForm" autocomplete="off" class="sign-in-form">
-            <div class="logo">
+            <a [routerLink]="'/'" class="logo">
               <img src="../../../assets/images/icon.svg" alt="QTáRolando?">
               <h4>QTáRolando?</h4>
-            </div>
+            </a>
 
             <div class="heading">
               <h2>Boas vindas!</h2>
@@ -57,10 +57,10 @@
           </form>
 
           <form action="#" [formGroup]="signUpForm" autocomplete="off" class="sign-up-form">
-            <div class="logo">
+            <a [routerLink]="'/'" class="logo">
               <img src="../../../assets/images/icon.svg" alt="QTáRolando?">
               <h4>QTáRolando?</h4>
-            </div>
+            </a>
 
             <div class="heading">
               <h2>Vamos iniciar</h2>
