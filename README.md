@@ -16,7 +16,7 @@ Sistema Web desenvolvido em Angular para se integrar com o [QTáRolando-API](htt
 Clone o projeto
 
 ```bash
-git clone https://github.com/a4s-ufpb/QTaRolando-API.git
+git clone https://github.com/a4s-ufpb/QTaRolandoManager.git
 ```
 
 Entre no diretório do projeto
