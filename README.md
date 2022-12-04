@@ -1,27 +1,68 @@
-# QTaRolandoManager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+# QTáRolandoManager
 
-## Development server
+Sistema Web desenvolvido em Angular para se integrar com o [QTáRolando-API](https://github.com/a4s-ufpb/QTaRolandoManager).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 🛠 Tecnologias utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Front-end:** Angular 14
 
-## Build
+**Back-end:** Spring Boot (QTáRolando-API)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 💻 Rodando localmente
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Clone o projeto
 
-## Running end-to-end tests
+```bash
+git clone https://github.com/a4s-ufpb/QTaRolandoManager.git
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Entre no diretório do projeto
 
-## Further help
+```bash
+cd QTáRolandoManager
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Instale as dependências
+
+```bash
+npm install
+```
+
+Configure o acesso ao back-end, colocando sua url na variável de ambiente `API` dentro do arquivo `environment.ts` localizado em `./src/environments/environment.ts`
+
+```ts
+export const environment = {
+  production: false,
+  API: 'http://localhost:8080/api'
+};
+```
+
+Inicie o sistema
+
+```bash
+npm run start
+```
+
+Acesse o sistema utilizando a url http://localhost:4200/eventos
+## ✅ Funcionalidades
+
+- Cadastro de usuários
+- Login de usuários Administradores
+- Cadastro, atualização e remoção de Eventos
+- Busca de eventos com filtros
+
+
+## 🚀 Roadmap
+
+- Melhorar a resposta em casos de erro
+
+- Adicionar mais validações para evitar erros
+
+- Adicionar mais integrações com a API
+
+- Implementar as funções referentes ao gerenciamento de usuários
+
+- Implementação de testes
