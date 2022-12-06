@@ -23,13 +23,11 @@ export class EventsService {
     if (initialDate) (params = params.append('initialDate', initialDate!));
     if (finalDate) (params = params.append('finalDate', finalDate!));
 
-    return this.http.get<any>(this.EVENTS_API + 'filter', { params: params })
-      .pipe(tap(console.log));
+    return this.http.get<any>(this.EVENTS_API + 'filter', { params: params });
   }
 
   getById(id: string) {
-    return this.http.get<EventModel>(this.EVENTS_API + id)
-      .pipe(tap(console.log));
+    return this.http.get<EventModel>(this.EVENTS_API + id);
   }
 
   create(event: EventModel) {
