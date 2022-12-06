@@ -53,7 +53,7 @@ export class EventCardComponent implements OnInit {
   }
 
   goDetails(): void {
-    this.router.navigate([(this.router.url), encodeURI(this.event.title), this.event.id]);
+    this.router.navigate([this.router.url.split('?')[0], encodeURI(this.event.title), this.event.id]);
   }
 
   goEdit(): void {
