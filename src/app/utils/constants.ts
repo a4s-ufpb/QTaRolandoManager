@@ -27,8 +27,7 @@ enum DatesEnum {
   Fim_Semana = 'Este fim de semana',
   Prox_Semana = 'Próxima semana',
   Este_Mes = 'Este mês',
-  Escolher_Intervalo = "Escolher intervalo",
-  Antigos = "Eventos passados"
+  Escolher_Intervalo = "Escolher intervalo"
 }
 
 export {
