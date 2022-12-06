@@ -1,5 +1,6 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 import { EventsService } from './../../services/events.service';
 import { EventModel } from "src/app/models/EventModel";
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
@@ -23,10 +24,17 @@ export class EventsComponent implements OnInit {
   @ViewChild('date_menu') dateMenu!: ElementRef;
   @ViewChild('date_seleted') dateSelectedElement!: ElementRef;
 
+  @ViewChild('inputDate') inputDateElement!: ElementRef;
+  dateRangeFilter: Date[] = [];
+  dateRangeFilterStr: string[] = [];
+  initialDateStr!: string;
+  finalDateStr!: string;
+
   searchStr: string = "";
   categorySelected: number = 0;
   modalitySelected: number = 0;
   dateTypeSelected: number = 0;
+  dateFilterSelected: string = 'Data';
 
   events: EventModel[] = [];
   events$: Subject<void> = new Subject<void>();
@@ -38,6 +46,9 @@ export class EventsComponent implements OnInit {
   categories = getCategories();
   modalities = getModalities();
 
+  datepipe: DatePipe = new DatePipe('pt-BR');
+  userTimezoneOffset: number = new Date().getTimezoneOffset() * 60000;
+
   selectCategory = (category: string) => {
     const indexOfS = Object.values(CategoriesEnum).indexOf(category as unknown as CategoriesEnum);
     this.categorySelected = indexOfS;
@@ -47,7 +58,10 @@ export class EventsComponent implements OnInit {
     this.getEvents();
   }
 
-  constructor(private renderer: Renderer2, private service: EventsService, private router: Router, private activatedRoute: ActivatedRoute,) { }
+  constructor(private renderer: Renderer2,
+    private service: EventsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.configureSearch();
@@ -77,6 +91,9 @@ export class EventsComponent implements OnInit {
       let modality = queryParams['md'];
       let dateType = queryParams['dt'];
 
+      this.initialDateStr = queryParams['initialDate'];
+      this.finalDateStr = queryParams['finalDate'];
+
       this.searchStr = title ?? "";
       this.categorySelected = category ? Object.keys(CategoriesEnum).indexOf(category as unknown as CategoriesEnum) : 0;
       this.modalitySelected = modality ? Object.keys(ModalitiesEnum).indexOf(modality as unknown as ModalitiesEnum) : 0;
@@ -86,13 +103,27 @@ export class EventsComponent implements OnInit {
       this.modalitySelected = this.modalitySelected == -1 ? 0 : this.modalitySelected;
       this.dateTypeSelected = this.dateTypeSelected == -1 ? 0 : this.dateTypeSelected;
 
+      if (this.dateTypeSelected == Object.keys(DatesEnum).length - 1) {
+        this.dateRangeFilter[0] = new Date(new Date(this.initialDateStr).getTime() + this.userTimezoneOffset) ?? new Date();
+        this.dateRangeFilter[1] = new Date(new Date(this.finalDateStr).getTime() + this.userTimezoneOffset) ?? new Date();
+
+        let initialDateToView = this.datepipe.transform(this.dateRangeFilter[0], 'dd MMM YYYY');
+        let finalDateToView = this.datepipe.transform(this.dateRangeFilter[1], 'dd MMM YYYY');
+
+        this.dateRangeFilterStr[0] = initialDateToView!;
+        this.dateRangeFilterStr[1] = finalDateToView!;
+
+        console.log(this.dateRangeFilterStr);
+      }
+
+      this.setDateFilterStr();
       this.getEvents();
     })
 
   }
 
   getEvents(): void {
-    this.service.listEvents(this.searchStr, this.categorySelected, this.getModalitySelected(), this.getDateTypeSelected(), "", "")
+    this.service.listEvents(this.searchStr, this.categorySelected, this.getModalitySelected(), this.getDateTypeSelected(), this.initialDateStr, this.finalDateStr)
       .pipe(takeUntil(this.events$)).subscribe(data => {
         this.events = data['content'];
         this.totalItems = data['totalElements'];
@@ -154,19 +185,57 @@ export class EventsComponent implements OnInit {
     return Object.values(DatesEnum)[this.dateTypeSelected];
   }
 
-  selectDate(date: string) {
+  selectTypeDate(date: string) {
     const indexOfS = Object.values(DatesEnum).indexOf(date as unknown as DatesEnum);
-
     this.dateTypeSelected = indexOfS;
+
     if (date == '') {
-      this.dateSelectedElement.nativeElement.innerText = 'Data';
+      this.dateRangeFilter = [];
+      this.setQueryFilterDate();
+    } else if (indexOfS == Object.keys(DatesEnum).length - 1) {
+      setTimeout(() => {
+        this.inputDateElement.nativeElement.click();
+      }, 200);
     } else {
-      this.dateSelectedElement.nativeElement.innerText = Object.values(DatesEnum)[this.dateTypeSelected];
+      this.setQueryFilterDate(indexOfS == 0 ? null : this.getDateTypeSelected(), null, null);
     }
 
-    const queryParams: Params = { dt: indexOfS == 0 ? null : this.getDateTypeSelected() };
-    setQueryParms(this.router, this.activatedRoute, queryParams);
     this.getEvents();
+  }
+
+  otherThanNull(arr: any[]): boolean {
+    return arr.some(el => el !== null);
+  }
+
+  setQueryFilterDate(dt?: string | null, initialDate?: string | null, finalDate?: string | null): void {
+    let queryParams: Params = { dt, initialDate, finalDate };
+    setQueryParms(this.router, this.activatedRoute, queryParams);
+  }
+
+  notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+    return value !== null && value !== undefined;
+  }
+
+
+  onClosePickerDateRange(_: any): void {
+    if (this.dateRangeFilter.filter(this.notEmpty).length == 0) {
+      this.dateTypeSelected = 0;
+      this.setQueryFilterDate()
+    } else {
+      this.initialDateStr = this.datepipe.transform(this.dateRangeFilter[0], 'YYYY-MM-dd')!;
+      this.finalDateStr = this.datepipe.transform(this.dateRangeFilter[1], 'YYYY-MM-dd')!;
+      this.setQueryFilterDate(this.getDateTypeSelected(), this.initialDateStr, this.finalDateStr);
+    }
+  }
+
+  setDateFilterStr(): void {
+    if (this.dateTypeSelected == 0) {
+      this.dateFilterSelected = 'Data';
+    } else if (this.dateTypeSelected > 0 && this.dateTypeSelected < Object.keys(DatesEnum).length - 1) {
+      this.dateFilterSelected = this.getDateSelected();
+    } else {
+      this.dateFilterSelected = `${this.dateRangeFilterStr[0]} até ${this.dateRangeFilterStr[1]}`;
+    }
   }
 
 }

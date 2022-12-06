@@ -51,16 +51,19 @@
 
             <div class="select-menu" #date_option>
               <div class="select-btn" #date_toggle id="date_btn" (click)="openDatesFilter()"
-                [ngClass]="this.dateTypeSelected != 0 ? 'active' : ''">
-                <span class="sBtn-text" #date_seleted>{{this.dateTypeSelected != 0 ? this.getDateSelected()
-                  :'Data'}}</span>
+                [ngClass]="this.dateTypeSelected != 0  ? 'active' : ''">
+                <span class="sBtn-text" #date_seleted>{{this.dateFilterSelected}}</span>
                 <i class="eva eva-arrow-ios-downward-outline" id="date_arrow" *ngIf="this.dateTypeSelected == 0"></i>
-                <i class="eva eva-close-circle" id="date_reset" *ngIf="this.dateTypeSelected != 0"
-                  (click)="selectDate('')"></i>
+                <i class="eva eva-close-circle" id="date_reset" *ngIf="this.dateTypeSelected > 0"
+                  (click)="selectTypeDate('')"></i>
               </div>
 
               <ul class="options" #date_menu>
-                <li class="option" (click)="selectDate(date)" *ngFor="let date of getDatesValues()">
+                <li class="option" (click)="selectTypeDate(date)" *ngFor="let date of getDatesValues()">
+                  <input #inputDate [owlDateTimeTrigger]="dateRange" [(ngModel)]="dateRangeFilter"
+                    style="visibility: hidden; width: 0;" [owlDateTime]="dateRange" [selectMode]="'range'">
+                  <owl-date-time (afterPickerClosed)="onClosePickerDateRange($event)" [pickerMode]="'dialog'"
+                    [pickerType]="'calendar'" #dateRange></owl-date-time>
                   <span class="option-text">{{date}}</span>
                 </li>
               </ul>
