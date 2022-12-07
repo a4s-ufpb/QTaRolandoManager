@@ -39,6 +39,7 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { DraggableCategoriesComponent } from './components/draggable-categories/draggable-categories.component';
+import { EventCardSkeletonComponent } from './components/skeleton/event-card-skeleton/event-card-skeleton.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DraggableCategoriesComponent } from './components/draggable-categories/
     AccountSettingsComponent,
     ButtonComponent,
     ModalComponent,
-    DraggableCategoriesComponent
+    DraggableCategoriesComponent,
+    EventCardSkeletonComponent
   ],
   imports: [
     BrowserModule,
