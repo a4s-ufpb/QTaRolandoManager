@@ -75,15 +75,15 @@
       <app-draggable-categories [selectedCategory]="getCategorySelected()" [onSelectCategory]="this.selectCategory">
       </app-draggable-categories>
 
-      <div *ngIf="this.events$; else empty">
-        <div *ngIf="events.length != 0" class="events-content">
+      <div *ngIf="this.events$ | async as obs; else loadingOrError">
+        <div *ngIf="!obs.empty" class="events-content">
           <div class="event"
-            *ngFor="let event of events | paginate: {itemsPerPage: this.pageSize, currentPage: this.page, totalItems: this.totalItems}">
+            *ngFor="let event of obs['content'] | paginate: {itemsPerPage: this.pageSize, currentPage: this.page, totalItems: obs['totalElements']}">
             <app-event-card [event]="event"></app-event-card>
           </div>
         </div>
 
-        <div *ngIf="events.length != 0">
+        <div *ngIf="!obs.empty">
           <pagination-template #p="paginationApi" (pageChange)="this.page = $event">
             <div class="pagination-custom">
               <ul class="pagi">
@@ -109,17 +109,28 @@
           </pagination-template>
         </div>
 
-        <div *ngIf="events.length == 0" class="empty-content">
+        <div *ngIf="obs.empty" class="empty-content">
           <img src="../../../assets/images/pages/events/empty.svg" alt="">
-          <h3>Sentimos muito, mas <span>nenhum</span> <br /> evento foi encontrado.</h3>
+          <h3>Nenhum resultado foi <span>encontrado</span>! <br />Tente pesquisar novamente.</h3>
         </div>
       </div>
-      <ng-template #empty>
-        <div class="empty-content">
-          <img src="../../../assets/images/pages/events/empty.svg" alt="">
-          <h3>Sentimos muito, mas <span>nenhum</span> <br /> evento foi encontrado.</h3>
+
+      <ng-template #loadingOrError>
+        <div *ngIf="this.errorOnGetEvents; else loading" class="empty-content">
+          <img src="../../../assets/images/pages/events/error-server.svg" alt="">
+          <h3><b>Opps, ocorreu um <span>problema</span>!</b> <br />Por favor, tente novamente mais
+            tarde.</h3>
         </div>
+
+        <ng-template #loading>
+          <div class="events-content">
+            <div class="event" *ngFor="let number of [1,2,3,4,5,6,7,8]">
+              <app-event-card-skeleton></app-event-card-skeleton>
+            </div>
+          </div>
+        </ng-template>
       </ng-template>
+
     </div>
   </div>
 </body>

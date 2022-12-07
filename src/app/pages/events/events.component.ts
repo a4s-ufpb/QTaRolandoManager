@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
+import { catchError, Subject, takeUntil, throwError, Observable } from 'rxjs';
 import { EventsService } from './../../services/events.service';
 import { EventModel } from "src/app/models/EventModel";
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
@@ -37,7 +37,7 @@ export class EventsComponent implements OnInit {
   dateFilterSelected: string = 'Data';
 
   events: EventModel[] = [];
-  events$: Subject<void> = new Subject<void>();
+  events$!: Observable<any>;
 
   pageSize: number = 24;
   page: number = 1;
@@ -48,6 +48,8 @@ export class EventsComponent implements OnInit {
 
   datepipe: DatePipe = new DatePipe('pt-BR');
   userTimezoneOffset: number = new Date().getTimezoneOffset() * 60000;
+
+  errorOnGetEvents: any = null;
 
   selectCategory = (category: string) => {
     const indexOfS = Object.values(CategoriesEnum).indexOf(category as unknown as CategoriesEnum);
@@ -77,11 +79,6 @@ export class EventsComponent implements OnInit {
         }
       }
     });
-  }
-
-  public ngOnDestroy(): void {
-    this.events$.next();
-    this.events$.complete()
   }
 
   configureSearch(): void {
@@ -123,11 +120,10 @@ export class EventsComponent implements OnInit {
   }
 
   getEvents(): void {
-    this.service.listEvents(this.searchStr, this.categorySelected, this.getModalitySelected(), this.getDateTypeSelected(), this.initialDateStr, this.finalDateStr)
-      .pipe(takeUntil(this.events$)).subscribe(data => {
-        this.events = data['content'];
-        this.totalItems = data['totalElements'];
-      });
+    this.events$ = this.service.listEvents(this.searchStr, this.categorySelected, this.getModalitySelected(), this.getDateTypeSelected(), this.initialDateStr, this.finalDateStr).pipe(catchError(err => {
+      this.errorOnGetEvents = err;
+      return throwError(() => err);
+    }));
   }
 
   btnSearch(): void {
@@ -199,8 +195,6 @@ export class EventsComponent implements OnInit {
     } else {
       this.setQueryFilterDate(indexOfS == 0 ? null : this.getDateTypeSelected(), null, null);
     }
-
-    this.getEvents();
   }
 
   otherThanNull(arr: any[]): boolean {
@@ -210,6 +204,8 @@ export class EventsComponent implements OnInit {
   setQueryFilterDate(dt?: string | null, initialDate?: string | null, finalDate?: string | null): void {
     let queryParams: Params = { dt, initialDate, finalDate };
     setQueryParms(this.router, this.activatedRoute, queryParams);
+
+    this.getEvents();
   }
 
   notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
@@ -220,7 +216,6 @@ export class EventsComponent implements OnInit {
   onClosePickerDateRange(_: any): void {
     if (this.dateRangeFilter.filter(this.notEmpty).length == 0) {
       this.dateTypeSelected = 0;
-      this.setQueryFilterDate()
     } else {
       this.initialDateStr = this.datepipe.transform(this.dateRangeFilter[0], 'YYYY-MM-dd')!;
       this.finalDateStr = this.datepipe.transform(this.dateRangeFilter[1], 'YYYY-MM-dd')!;

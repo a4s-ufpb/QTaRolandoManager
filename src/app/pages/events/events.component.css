@@ -353,7 +353,7 @@ ul .item a i {
   display: flex;
   flex-direction: column;
   gap: var(--32px);
-  margin: 5rem 0;
+  margin: 8rem 0;
   justify-content: center;
   align-items: center;
 }
@@ -498,7 +498,7 @@ ul .item a i {
   }
 
   .empty-content img {
-    width: 45vw;
+    width: 50vw;
   }
 
   .empty-content h3 {
@@ -521,6 +521,10 @@ ul .item a i {
 
   .search-wrap .search-content .input {
     font-size: var(--12px);
+  }
+
+  .empty-content h3 {
+    font-size: var(--14px);
   }
 }
 
