@@ -72,13 +72,13 @@
         </div>
       </div>
 
-      <app-draggable-categories [selectedCategory]="getCategorySelected()" [onSelectCategory]="this.selectCategory">
-      </app-draggable-categories>
+      <app-scrollable-slider-tabs [selectedCategory]="getCategorySelected()"
+        [onSelectCategory]="this.selectCategory"></app-scrollable-slider-tabs>
 
       <div *ngIf="this.events$ | async as obs; else loadingOrError">
         <div *ngIf="!obs.empty" class="events-content">
           <div class="event"
-            *ngFor="let event of obs['content'] | paginate: {itemsPerPage: this.pageSize, currentPage: this.page, totalItems: obs['totalElements']}">
+            *ngFor="let event of obs['content'] | paginate: {itemsPerPage: this.pageSize, currentPage: this.page, totalItems: obs.totalElements}">
             <app-event-card [event]="event"></app-event-card>
           </div>
         </div>
