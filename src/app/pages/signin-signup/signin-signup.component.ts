@@ -21,6 +21,7 @@ export class SigninSignupComponent implements OnInit {
   showPassword: boolean = false;
 
   errorMessage: string = "";
+  isAdmin?: boolean;
   isLogged: Boolean = false;
   roles: string[] = [];
 
@@ -98,7 +99,7 @@ export class SigninSignupComponent implements OnInit {
     });
   }
 
-  public changeQueryParams() {
+  changeQueryParams(): void {
     const queryParams: Params = { type: !this.isLogin ? 'signIn' : 'signUp' };
 
     this.router.navigate(
@@ -110,11 +111,11 @@ export class SigninSignupComponent implements OnInit {
       });
   }
 
-  showHidePassword() {
+  showHidePassword(): void {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
     if (!this.isLogin) {
       if (this.signUpForm.invalid || this.signUpForm.controls.checkbox.value == false) {
@@ -133,7 +134,7 @@ export class SigninSignupComponent implements OnInit {
     }
   }
 
-  register() {
+  register(): void {
     const user: UserRequestModel = ({
       username: this.signUpForm.controls.name.value!,
       email: this.signUpForm.controls.email.value!,
@@ -149,26 +150,31 @@ export class SigninSignupComponent implements OnInit {
         this.errorMessage = err.error.message;
       },
       complete: () => {
-        this.login(user.email, user.password);
+        this.changeQueryParams();
+        // Ajustar para quando for possível que qualquer usuário possa fazer login, onde será feito o login automáticamente
+        // this.login(user.email, user.password);
       }
     });
   }
 
-  login(email?: string, password?: string) {
-    console.log(this.rsaHelper.encryptWithPublicKey(this.signInForm.controls.password.value!))
+  login(email?: string, password?: string): void {
     this.authService.login(
       email ?? this.signInForm.controls.email.value!,
       password ?? this.rsaHelper.encryptWithPublicKey(this.signInForm.controls.password.value!)
     ).subscribe({
       next: (data) => {
-        this.storageService.saveUser(data);
+        // Ajustar para quando for possível que qualquer usuário possa fazer login, onde será feito o login automáticamente
+        if (data.roles.includes('ROLE_ADMIN')) {
+          this.storageService.saveUser(data);
 
-        this.errorMessage = "";
-        this.isLogged = true;
-        this.roles = this.storageService.getUser().roles;
-        this.router.navigate(['/eventos']).then(() => {
-          // window.location.reload();
-        });
+          this.errorMessage = "";
+          this.isAdmin = true;
+          this.isLogged = true;
+          this.roles = this.storageService.getUser().roles;
+          this.router.navigate(['/eventos']);
+        } else {
+          this.isAdmin = false;
+        }
       },
       error: (err) => {
         this.errorMessage = err.error.message;

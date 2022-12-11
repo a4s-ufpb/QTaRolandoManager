@@ -48,6 +48,10 @@
                 <span>Não foi possível efetuar login! Verifique seu email, senha e tente novamente.</span>
               </div>
 
+              <div class="invalid-feedback fail-login" *ngIf="submitted && isLogin && isAdmin == false">
+                <span>Sentimos muito, mas atualmente apenas <b>administradores</b> podem efetuar login.</span>
+              </div>
+
               <p class="text">
                 Esqueceu sua senha ou seu login?<br>
                 <a href="#">Obter ajuda</a> para fazer login
