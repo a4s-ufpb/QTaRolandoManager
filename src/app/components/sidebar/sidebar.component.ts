@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { AfterViewInit, Component, HostListener, Input, OnInit } from '@angular/core';
 import { UserModel } from 'src/app/models/UserModel';
 import { StorageService } from 'src/app/services/storage.service';
