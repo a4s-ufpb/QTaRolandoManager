@@ -7,7 +7,6 @@ import { EventModel } from 'src/app/models/EventModel';
 import { EventsService } from 'src/app/services/events.service';
 
 import { Clipboard } from '@angular/cdk/clipboard';
-import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-event-details',
@@ -18,10 +17,6 @@ export class EventDetailsComponent implements OnInit {
 
   event$!: Observable<EventModel>;
   href!: string;
-
-  options: AnimationOptions = {
-    path: '/assets/anim/loading-animation.json',
-  };
 
   constructor(
     private service: EventsService,

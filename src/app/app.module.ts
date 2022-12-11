@@ -44,13 +44,6 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EventCardSkeletonComponent } from './components/skeleton/event-card-skeleton/event-card-skeleton.component';
 import { ScrollableSliderTabsComponent } from './components/scrollable-slider-tabs/scrollable-slider-tabs.component';
 
-// Lottie animations
-import { LottieModule } from 'ngx-lottie';
-import player from 'lottie-web';
-export function playerFactory() {
-  return player;
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +79,6 @@ export function playerFactory() {
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     QuillModule.forRoot(),
-    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [
     httpInterceptorProviders,

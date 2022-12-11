@@ -224,6 +224,49 @@ i.eva-arrow-ios-forward-outline {
   height: calc((100vh - var(--header-height)) - 10rem);
 }
 
+.loader {
+  position: relative;
+  border-radius: var(--8px);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(103.78deg, #ED844E 0%, #FB323D 98.17%);
+  transform: rotateX(65deg) rotate(45deg);
+  color: var(--placeholder-color);
+  animation: layers1 1s linear infinite alternate;
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  border-radius: var(--8px);
+  inset: 0;
+  opacity: 0.5;
+  background: var(--third-color);
+  animation: layerTr 1s linear infinite alternate;
+}
+
+@keyframes layers1 {
+  0% {
+    box-shadow: 0px 0px 0 0px
+  }
+
+  90%,
+  100% {
+    box-shadow: 20px 20px 0 -4px
+  }
+}
+
+@keyframes layerTr {
+  0% {
+    transform: translate(0, 0) scale(1)
+  }
+
+  100% {
+    transform: translate(-25px, -25px) scale(1)
+  }
+}
+
+
 @media only screen and (max-width: 1280px) {
   .wrapper .containers {
     gap: 18px;
