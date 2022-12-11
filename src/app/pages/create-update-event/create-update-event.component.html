@@ -9,7 +9,7 @@
   <form [formGroup]="eventFormGroup">
     <div class="content">
 
-      <p class="title-page">Criar <b>Evento</b></p>
+      <p class="title-page">{{this.isUpdate ? 'Editar' : 'Criar'}} <b>Evento</b></p>
 
       <div class="basic-info">
         <div class="title">
