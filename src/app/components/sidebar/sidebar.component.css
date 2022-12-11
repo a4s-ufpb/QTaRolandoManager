@@ -394,7 +394,7 @@ body.shrink .hide {
   transition-delay: 0s;
 }
 
-body.shrink .shrink-btn span {
+body.shrink .shrink-btn i {
   transform: rotate(-180deg);
 }
 
