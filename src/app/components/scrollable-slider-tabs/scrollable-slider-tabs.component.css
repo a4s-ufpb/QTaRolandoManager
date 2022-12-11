@@ -1,0 +1,105 @@
+.scrollable-tabs-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollable-tabs-container i {
+  font-size: var(--26px);
+  padding: var(--8px);
+  border-radius: 50%;
+  background-color: var(--primary-color-light);
+  transition: var(--tran-02);
+  cursor: pointer;
+}
+
+.scrollable-tabs-container i:hover {
+  filter: brightness(0.85);
+}
+
+.scrollable-tabs-container ul {
+  display: flex;
+  gap: var(--10px);
+  padding-block: var(--12px);
+  margin: 1px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.scrollable-tabs-container ul.dragging {
+  scroll-behavior: auto;
+}
+
+.scrollable-tabs-container ul::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-tabs-container a {
+  display: inline-block;
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: var(--14px);
+  background: var(--input-background-color);
+  border: 1px solid var(--primary-color-light);
+  padding: var(--12px) var(--16px);
+  border-radius: 30px;
+  transition: var(--tran-02);
+}
+
+.scrollable-tabs-container a:hover {
+  filter: brightness(0.95);
+}
+
+.scrollable-tabs-container a.active {
+  color: var(--third-color);
+  background: var(--third-color-active);
+  border: 1px solid var(--third-color);
+}
+
+.scrollable-tabs-container .left-arrow,
+.scrollable-tabs-container .right-arrow {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  top: 0;
+  display: none;
+  z-index: 1;
+  align-items: center;
+}
+
+.scrollable-tabs-container .left-arrow.active,
+.scrollable-tabs-container .right-arrow.active {
+  display: flex;
+}
+
+.scrollable-tabs-container .left-arrow {
+  background: linear-gradient(to right, var(--body-color) 70%, transparent);
+}
+
+.scrollable-tabs-container .right-arrow {
+  right: 0;
+  background: linear-gradient(to left, var(--body-color) 70%, transparent);
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 767px) {
+  .scrollable-tabs-container ul {
+    padding-block: var(--8px);
+  }
+
+  .scrollable-tabs-container .left-arrow,
+  .scrollable-tabs-container .right-arrow {
+    width: 70px;
+  }
+
+  .scrollable-tabs-container i {
+    font-size: var(--18px);
+  }
+
+  .scrollable-tabs-container a {
+    font-size: var(--10px);
+    padding: var(--10px) var(--12px);
+  }
+}

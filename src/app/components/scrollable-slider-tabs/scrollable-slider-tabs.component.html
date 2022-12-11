@@ -1,0 +1,19 @@
+<div class="scrollable-tabs-container">
+  <div class="left-arrow" #leftArrowContainer>
+    <i class="eva eva-arrow-ios-back" #leftArrow></i>
+  </div>
+
+  <ul #tabsList>
+    <li>
+      <a [ngClass]="{active: this.selectedCategory == ''}" (click)="this.onSelectCategory('')">Todos</a>
+    </li>
+    <li *ngFor="let category of this.categories">
+      <a [ngClass]="{active: this.selectedCategory == category}"
+        (click)="this.onSelectCategory(category)">{{category}}</a>
+    </li>
+  </ul>
+
+  <div class="right-arrow active" #rightArrowContainer>
+    <i class="eva eva-arrow-ios-forward" #rightArrow></i>
+  </div>
+</div>
