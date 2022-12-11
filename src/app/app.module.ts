@@ -34,12 +34,22 @@ registerLocaleData(localePT)
 
 // DateTime Picker
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+
+// Editor de descricao de eventos
 import { QuillModule } from 'ngx-quill';
+
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { DraggableCategoriesComponent } from './components/draggable-categories/draggable-categories.component';
 import { EventCardSkeletonComponent } from './components/skeleton/event-card-skeleton/event-card-skeleton.component';
+import { ScrollableSliderTabsComponent } from './components/scrollable-slider-tabs/scrollable-slider-tabs.component';
+
+// Lottie animations
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -61,8 +71,8 @@ import { EventCardSkeletonComponent } from './components/skeleton/event-card-ske
     AccountSettingsComponent,
     ButtonComponent,
     ModalComponent,
-    DraggableCategoriesComponent,
-    EventCardSkeletonComponent
+    EventCardSkeletonComponent,
+    ScrollableSliderTabsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +86,7 @@ import { EventCardSkeletonComponent } from './components/skeleton/event-card-ske
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     QuillModule.forRoot(),
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [
     httpInterceptorProviders,

@@ -9,31 +9,6 @@ body {
   width: 100%;
   max-width: var(--max-width-content);
   display: flex;
-  flex-direction: column;
-}
-
-.wrapper .back-button {
-  display: flex;
-  width: fit-content;
-  height: 50px;
-  padding: 0 16px;
-  border-radius: 8px;
-  align-items: center;
-  font-weight: 500;
-  background: var(--sidebar-color);
-  box-shadow: var(--shadow-pagination);
-  transition: var(--tran-02);
-  cursor: pointer;
-}
-
-.back-button .eva {
-  font-size: 22px;
-  opacity: 0.35;
-}
-
-.wrapper .back-button:hover {
-  filter: brightness(90%);
-  box-shadow: none;
 }
 
 .wrapper .containers {
@@ -241,6 +216,14 @@ i.eva-arrow-ios-forward-outline {
   border-color: var(--card-color-primary-light) #0000 #0000 #0000;
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc((100vh - var(--header-height)) - 10rem);
+}
+
 @media only screen and (max-width: 1280px) {
   .wrapper .containers {
     gap: 18px;
@@ -304,26 +287,17 @@ i.eva-arrow-ios-forward-outline {
 }
 
 @media only screen and (max-width: 768px) {
-  .containers .right-container {
-    flex-direction: column;
-  }
-
   .header-info h1 {
     font-size: var(--28px);
+  }
+
+  .wrapper {
+    gap: 12px;
+    padding: 12px;
   }
 }
 
 @media only screen and (max-width: 570px) {
-  .wrapper .back-button {
-    padding: 10px;
-    height: fit-content;
-    gap: 8px;
-  }
-
-  .back-button .eva {
-    font-size: 18px;
-  }
-
   .left-container .header {
     padding: var(--12px);
   }
@@ -334,10 +308,6 @@ i.eva-arrow-ios-forward-outline {
 }
 
 @media only screen and (max-width: 460px) {
-  .wrapper {
-    gap: 12px;
-    padding: 12px;
-  }
 
   .wrapper .containers {
     gap: 12px;

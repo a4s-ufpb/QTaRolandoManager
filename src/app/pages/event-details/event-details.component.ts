@@ -1,11 +1,13 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { formatDate, Location } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { EventModel } from 'src/app/models/EventModel';
 import { EventsService } from 'src/app/services/events.service';
 
 import { Clipboard } from '@angular/cdk/clipboard';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-event-details',
@@ -15,20 +17,26 @@ import { Clipboard } from '@angular/cdk/clipboard';
 export class EventDetailsComponent implements OnInit {
 
   event$!: Observable<EventModel>;
+  href!: string;
+
+  options: AnimationOptions = {
+    path: '/assets/anim/loading-animation.json',
+  };
 
   constructor(
-    private location: Location,
     private service: EventsService,
+    private router: Router,
     private route: ActivatedRoute,
     private clipboard: Clipboard) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.event$ = this.service.getById(id);
+    this.href = window.location.href;
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/eventos']);
   }
 
   getStartEndDate(event: EventModel): { startDate: string, endDate: string } {
@@ -48,7 +56,7 @@ export class EventDetailsComponent implements OnInit {
       tooltip?.classList.remove('active');
     }, 1000);
 
-    this.clipboard.copy(window.location.href);
+    this.clipboard.copy(this.href);
   }
 
 }
