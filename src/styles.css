@@ -20,6 +20,7 @@
   --secondary-color: #ED834E;
   --third-color: #8371fd;
   --third-color-hover: #8471fd25;
+  --third-color-active: #EDEAFF;
   --confirm-color: green;
   --primary-color-dark: #111315;
   --primary-color-light: #d0d7de52;
@@ -63,6 +64,7 @@
   --20px: 1.25rem;
   --22px: 1.375rem;
   --24px: 1.5rem;
+  --26px: 1.625rem;
   --28px: 1.75rem;
   --32px: 2rem;
   --34px: 2.125rem;
